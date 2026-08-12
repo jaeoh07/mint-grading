@@ -6,6 +6,7 @@ export type ReportSection = {
   title: string; // 예: "자켓 앞면"
   image?: string; // 줌인 사진 URL
   body: string; // 설명글
+  required?: boolean; // 사진 필수 부위 여부 (관리자 참고용)
 };
 
 export type CheckItem = {
@@ -19,8 +20,9 @@ export type Record = {
   albumTitle: string; // 예: "신해철 2집 [Myself]"
   format: string; // 예: "LP" / "CD"
   coverImage?: string; // 대표(전체) 사진 URL
-  finalGrade: string; // 예: "NM (Near Mint)"
-  gradeNumber: string; // 예: "9등급"
+  mediaGrade: string; // 알판(Media) 등급, 예: "Near Mint (NM / M-)"
+  sleeveGrade: string; // 자켓(Sleeve) 등급, 예: "Very Good Plus (VG+)"
+  sealed: boolean; // 미개봉 여부 (true면 내부 미검수)
   // 음반 메타정보 (선택 — 비우면 화면에 표시되지 않음)
   releaseYear?: string; // 발매연도
   label?: string; // 레이블

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { use, useEffect, useState } from "react";
 import type { Record } from "@/lib/store";
-import { GRADES, PAGE_BACKGROUND, gradeColor, matchGrade, rankLabel } from "@/lib/grade";
+import { GRADES, PAGE_BACKGROUND, SEALED_COLOR, SEALED_LABEL, gradeColor, matchGrade } from "@/lib/grade";
 
 export default function ResultPage({
   searchParams,
@@ -54,9 +54,11 @@ export default function ResultPage({
     );
   }
 
-  const accent = gradeColor(record.finalGrade);
-  const currentGrade = matchGrade(record.finalGrade);
-  const isSealed = currentGrade?.code === "SS";
+  const isSealed = record.sealed;
+  const mediaColor = gradeColor(record.mediaGrade);
+  const sleeveColor = gradeColor(record.sleeveGrade);
+  const currentMedia = matchGrade(record.mediaGrade);
+  const currentSleeve = matchGrade(record.sleeveGrade);
 
   // 밀봉(Sealed)이면 알판(디스크)·청음 등 내부 검수 섹션은 자동 숨김
   const MEDIA_KEYWORDS = ["디스크", "알판", "a면", "b면", "청음", "media", "미디어"];
@@ -110,21 +112,37 @@ export default function ResultPage({
           )}
         </div>
 
-        {/* 최종 등급 + 등급표 버튼 */}
+        {/* 등급 (알판/자켓) + 등급표 버튼 */}
         <div className="px-8 py-6 border-b border-white/10 text-center">
-          <div className="flex items-center justify-center gap-3">
+          <div className="flex items-center justify-center mb-3">
             <button
               onClick={() => setShowGuide(true)}
               className="text-xs px-3 py-1.5 rounded-full border border-white/25 text-white/70 hover:bg-white/10 transition"
             >
-              등급표 보기
+              골드마인 등급표 보기
             </button>
-            <span className="text-white/50 text-sm">최종 등급</span>
           </div>
-          <div className="mt-2 text-3xl font-black" style={{ color: accent }}>
-            {record.finalGrade}
-            {record.gradeNumber ? <span className="text-white"> · {record.gradeNumber}</span> : null}
-          </div>
+          {isSealed ? (
+            <div className="text-3xl font-black" style={{ color: SEALED_COLOR }}>
+              {SEALED_LABEL}
+              <p className="mt-2 text-sm font-normal text-white/50">밀봉 상태로 내부 알판은 미검수입니다.</p>
+            </div>
+          ) : (
+            <div className="flex justify-center gap-10">
+              <div>
+                <span className="text-white/50 text-sm">알판 (Media)</span>
+                <div className="mt-1 text-2xl sm:text-3xl font-black" style={{ color: mediaColor }}>
+                  {record.mediaGrade || "—"}
+                </div>
+              </div>
+              <div>
+                <span className="text-white/50 text-sm">자켓 (Sleeve)</span>
+                <div className="mt-1 text-2xl sm:text-3xl font-black" style={{ color: sleeveColor }}>
+                  {record.sleeveGrade || "—"}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* O/X 확인 항목 */}
@@ -220,7 +238,10 @@ export default function ResultPage({
             </div>
             <ul className="space-y-2">
               {GRADES.map((g) => {
-                const isCurrent = currentGrade?.code === g.code;
+                const tags: string[] = [];
+                if (currentMedia?.code === g.code) tags.push("알판");
+                if (currentSleeve?.code === g.code) tags.push("자켓");
+                const isCurrent = tags.length > 0;
                 return (
                   <li
                     key={g.code}
@@ -229,12 +250,12 @@ export default function ResultPage({
                     <div className="flex items-center gap-2">
                       <span className="w-3 h-3 rounded-full" style={{ background: g.color }} />
                       <span className="font-bold" style={{ color: g.color }}>{g.name}</span>
-                      <span className="text-xs px-2 py-0.5 rounded-full border border-white/15 text-white/60">
-                        {rankLabel(g)}
-                      </span>
-                      {isCurrent && <span className="ml-auto text-xs text-white/60">이 음반</span>}
+                      {isCurrent && <span className="ml-auto text-xs text-white/60">이 음반 · {tags.join("/")}</span>}
                     </div>
-                    <p className="mt-1 text-sm text-neutral-400 leading-relaxed">{g.desc}</p>
+                    <div className="mt-2 space-y-1.5 text-sm text-neutral-400 leading-relaxed">
+                      <p><span className="text-neutral-500 font-semibold">알판(Media)</span> · {g.mediaDesc}</p>
+                      <p><span className="text-neutral-500 font-semibold">자켓(Sleeve)</span> · {g.sleeveDesc}</p>
+                    </div>
                   </li>
                 );
               })}
@@ -245,9 +266,24 @@ export default function ResultPage({
 
       {/* 사진 확대(라이트박스) */}
       {zoom && (
-        <div className="fixed inset-0 bg-black/90 flex items-center justify-center p-4 z-50 cursor-zoom-out" onClick={() => setZoom(null)}>
+        <div className="fixed inset-0 bg-black/90 flex items-center justify-center p-4 z-50" onClick={() => setZoom(null)}>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setZoom(null);
+            }}
+            aria-label="닫기"
+            className="fixed top-4 right-4 w-11 h-11 rounded-full bg-white/15 hover:bg-white/30 text-white text-2xl leading-none flex items-center justify-center z-10"
+          >
+            ×
+          </button>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={zoom} alt="" className="max-w-full max-h-full object-contain" />
+          <img
+            src={zoom}
+            alt=""
+            onClick={(e) => e.stopPropagation()}
+            className="max-w-full max-h-full object-contain cursor-zoom-out"
+          />
         </div>
       )}
     </main>

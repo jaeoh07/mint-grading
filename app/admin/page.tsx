@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { CheckItem, Record, ReportSection } from "@/lib/store";
-import { GRADES, matchGrade } from "@/lib/grade";
+import { GRADES, matchGrade, gradeSummary, isAutoGradeSummary, SEALED_SUMMARY } from "@/lib/grade";
 
 const uid = () => Math.random().toString(36).slice(2);
 
@@ -26,20 +26,48 @@ function generateCode(existing: Record[]): string {
 }
 
 // 새 음반 추가 시 채워지는 초안(예시). 그대로 두거나 수정·삭제하면 됩니다.
-const DEFAULT_SECTIONS: { title: string; body: string }[] = [
-  { title: "자켓 앞면", body: "전반적인 보존 상태 양호. 인쇄 선명하며 변색·오염 흔적 없음." },
-  { title: "자켓 뒷면", body: "변색·습기 흔적 없이 깨끗함. 크레딧/트랙 정보 인쇄 양호." },
-  { title: "모서리 마모", body: "네 모서리 상태 양호. (마모 있을 시 위치·크기 기재)" },
-  { title: "자켓 눌림·번짐·헤어라인", body: "표면 눌림(Crease)·잉크 번짐 없음." },
-  { title: "디스크 앞면(A면) 스크래치", body: "육안상 특이 스크래치 없음. (있을 시 위치·정도 기재)" },
-  { title: "디스크 뒷면(B면) 스크래치", body: "육안상 특이 스크래치 없음. 표면 광택 양호." },
+// req: 스크래치가 없어도 반드시 사진을 넣어야 하는 부위
+type SectionTmpl = { title: string; body: string; req: boolean };
+
+const DEFAULT_SECTIONS_LP: SectionTmpl[] = [
+  { title: "자켓 앞면", body: "전반적인 보존 상태 양호. 인쇄 선명하며 변색·오염 흔적 없음.", req: true },
+  { title: "자켓 뒷면", body: "변색·습기 흔적 없이 깨끗함. 크레딧/트랙 정보 인쇄 양호.", req: true },
+  { title: "모서리 마모", body: "네 모서리 상태 양호. (마모 있을 시 위치·크기 기재)", req: false },
+  { title: "자켓 눌림·번짐·헤어라인", body: "표면 눌림(Crease)·잉크 번짐 없음.", req: false },
+  { title: "디스크 앞면(A면) 스크래치", body: "육안상 특이 스크래치 없음. (있을 시 위치·정도 기재)", req: true },
+  { title: "디스크 뒷면(B면) 스크래치", body: "육안상 특이 스크래치 없음. 표면 광택 양호.", req: true },
 ];
+
+const DEFAULT_SECTIONS_CD: SectionTmpl[] = [
+  { title: "자켓(부클릿) 앞면", body: "전반적인 보존 상태 양호. 인쇄 선명하며 변색·오염 흔적 없음.", req: true },
+  { title: "자켓 뒷면(인레이)", body: "변색·손상 없이 양호.", req: true },
+  { title: "디스크 재생면(하판) 스크래치", body: "육안상 특이 스크래치 없음. (있을 시 위치·정도 기재)", req: true },
+  { title: "디스크 레이블면(상판)", body: "인쇄 선명하며 손상·벗겨짐 없음.", req: false },
+  { title: "부클릿 내부 상태", body: "구겨짐·변색·필기 없이 깨끗함.", req: false },
+];
+
+// 포맷에 맞는 기본 섹션 템플릿 (CD면 CD용, 그 외는 LP/바이닐용)
+function sectionTemplate(format: string): SectionTmpl[] {
+  return /cd/i.test(format) ? DEFAULT_SECTIONS_CD : DEFAULT_SECTIONS_LP;
+}
+
+function tmplToSections(format: string): ReportSection[] {
+  return sectionTemplate(format).map((s) => ({ id: uid(), title: s.title, image: "", body: s.body, required: s.req }));
+}
+
+// 현재 섹션이 아직 손대지 않은 기본 템플릿인지(포맷 바꿀 때 자동 교체 판단용)
+function isUntouchedTemplate(sections: ReportSection[]): boolean {
+  const match = (t: SectionTmpl[]) =>
+    sections.length === t.length &&
+    sections.every((s, i) => s.title === t[i].title && s.body === t[i].body && !s.image);
+  return match(DEFAULT_SECTIONS_LP) || match(DEFAULT_SECTIONS_CD);
+}
 
 const DEFAULT_SUMMARY =
   "골드마인(Goldmine) 표준 등급 기준에 의거하여, 치명적인 손상이 없는 우수한 상태로 판정되어 최종 [ 등급 ] 부여되었습니다.";
 
 const DEFAULT_DISCLAIMER =
-  "본 등급은 당사의 객관적 가이드라인(Rubric v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.";
+  "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.";
 
 // "+ 추가" 시 기본 항목이 채워진 템플릿을 제공 (그대로 두거나 지워도 됨)
 function blankRecord(): Record {
@@ -48,13 +76,15 @@ function blankRecord(): Record {
     albumTitle: "",
     format: "LP",
     coverImage: "",
-    finalGrade: "",
-    gradeNumber: "",
+    mediaGrade: "",
+    sleeveGrade: "",
+    sealed: false,
     checks: [
       { id: uid(), label: "속지 여부", value: "O" },
       { id: uid(), label: "가사지 여부", value: "O" },
+      { id: uid(), label: "사인 여부", value: "X" },
     ],
-    sections: DEFAULT_SECTIONS.map((s) => ({ id: uid(), title: s.title, image: "", body: s.body })),
+    sections: tmplToSections("LP"),
     summary: DEFAULT_SUMMARY,
     disclaimer: DEFAULT_DISCLAIMER,
     updatedAt: "",
@@ -62,7 +92,7 @@ function blankRecord(): Record {
 }
 
 function newSection(): ReportSection {
-  return { id: uid(), title: "", image: "", body: "" };
+  return { id: uid(), title: "", image: "", body: "", required: false };
 }
 
 function newCheck(): CheckItem {
@@ -79,8 +109,7 @@ export default function AdminPage() {
   const [originalCode, setOriginalCode] = useState<string | undefined>(undefined);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
-  const [importUrl, setImportUrl] = useState("");
-  const [importing, setImporting] = useState(false);
+  const [showGuide, setShowGuide] = useState(false);
 
   // 로그인 상태 확인
   useEffect(() => {
@@ -131,6 +160,9 @@ export default function AdminPage() {
     if (!Array.isArray(clone.checks)) clone.checks = [];
     if (!Array.isArray(clone.sections)) clone.sections = [];
     if (typeof clone.format !== "string") clone.format = "";
+    if (typeof clone.mediaGrade !== "string") clone.mediaGrade = "";
+    if (typeof clone.sleeveGrade !== "string") clone.sleeveGrade = "";
+    if (typeof clone.sealed !== "boolean") clone.sealed = false;
     setDraft(clone);
     setOriginalCode(r.code);
     setMessage("");
@@ -192,41 +224,6 @@ export default function AdminPage() {
     await fetch(`/api/records?code=${encodeURIComponent(code)}`, { method: "DELETE" });
     if (draft && originalCode === code) setDraft(null);
     loadRecords();
-  }
-
-  // 링크(yes24·나무위키 등)에서 제목·표지·포맷 자동 불러오기
-  async function importFromUrl() {
-    if (!draft) return;
-    const url = importUrl.trim();
-    if (!url) return;
-    setImporting(true);
-    setMessage("");
-    try {
-      const res = await fetch("/api/import", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url }),
-      });
-      const d = await res.json();
-      if (!res.ok) {
-        setMessage(d.error ?? "불러오기 실패");
-        return;
-      }
-      setDraft((prev) =>
-        prev
-          ? {
-              ...prev,
-              albumTitle: d.albumTitle || prev.albumTitle,
-              coverImage: d.coverImage || prev.coverImage,
-              format: d.format || prev.format,
-            }
-          : prev
-      );
-      setMessage("불러왔습니다. 제목·표지를 확인하고 필요시 수정하세요.");
-      setImportUrl("");
-    } finally {
-      setImporting(false);
-    }
   }
 
   // 저장 후 QR 이미지 다운로드 (스캔 시 이 음반 감정 리포트로 연결)
@@ -329,36 +326,24 @@ export default function AdminPage() {
               <p className="text-neutral-600">왼쪽에서 음반을 선택하거나 &ldquo;+ 추가&rdquo;를 누르세요.</p>
             ) : (
               <div className="space-y-6">
-                {/* 링크로 자동 불러오기 */}
-                <div className="rounded-xl border border-neutral-700 bg-neutral-900/50 p-4">
-                  <label className="block text-sm text-neutral-300 mb-2 font-bold">
-                    🔗 링크로 불러오기 (yes24 · 나무위키 등)
-                  </label>
-                  <div className="flex gap-2">
-                    <input
-                      value={importUrl}
-                      onChange={(e) => setImportUrl(e.target.value)}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter") {
-                          e.preventDefault();
-                          importFromUrl();
-                        }
-                      }}
-                      className="input"
-                      placeholder="상품/문서 페이지 주소 붙여넣기"
-                    />
-                    <button
-                      type="button"
-                      onClick={importFromUrl}
-                      disabled={importing || !importUrl.trim()}
-                      className="shrink-0 bg-white text-black font-bold rounded-lg px-4 disabled:opacity-40"
-                    >
-                      {importing ? "불러오는 중…" : "불러오기"}
-                    </button>
-                  </div>
-                  <p className="mt-2 text-xs text-neutral-500">
-                    제목·표지 사진·포맷을 자동으로 채웁니다. (등급·상세는 직접 감정하세요)
-                  </p>
+                {/* 상단 빠른 저장 바 */}
+                <div className="flex items-center gap-2 sticky top-0 z-10 bg-black/85 backdrop-blur py-2 -mx-1 px-1">
+                  <button
+                    onClick={() => save()}
+                    disabled={saving}
+                    className="bg-white text-black font-bold rounded-lg px-5 py-2 disabled:opacity-50"
+                  >
+                    {saving ? "저장 중…" : "저장"}
+                  </button>
+                  <button
+                    onClick={downloadQR}
+                    disabled={saving}
+                    className="border border-white/40 font-bold rounded-lg px-5 py-2 hover:bg-white/10 disabled:opacity-50"
+                    title="저장 후 QR 이미지가 다운로드됩니다"
+                  >
+                    QR 출력
+                  </button>
+                  <span className="ml-auto text-xs text-neutral-500 font-mono">{draft.code}</span>
                 </div>
 
                 <Field label="인증번호 (자동 발급 · 고정)">
@@ -384,7 +369,14 @@ export default function AdminPage() {
                   <Field label="포맷">
                     <input
                       value={draft.format}
-                      onChange={(e) => setDraft({ ...draft, format: e.target.value })}
+                      onChange={(e) => {
+                        const format = e.target.value;
+                        // 아직 손대지 않은 기본 섹션이면 포맷에 맞는 템플릿으로 자동 교체
+                        const sections = isUntouchedTemplate(draft.sections)
+                          ? tmplToSections(format)
+                          : draft.sections;
+                        setDraft({ ...draft, format, sections });
+                      }}
                       className="input"
                       placeholder="LP"
                       list="format-list"
@@ -392,9 +384,6 @@ export default function AdminPage() {
                     <datalist id="format-list">
                       <option value="LP" />
                       <option value="CD" />
-                      <option value="EP" />
-                      <option value="7인치" />
-                      <option value="카세트" />
                     </datalist>
                   </Field>
                 </div>
@@ -407,39 +396,77 @@ export default function AdminPage() {
                   />
                 </Field>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <Field label="최종 등급 (목록에서 선택)">
-                    <input
-                      value={draft.finalGrade}
-                      onChange={(e) => {
-                        const v = e.target.value;
-                        const g = matchGrade(v);
-                        // 등급이 매칭되면 등급 숫자 자동 입력(미개봉은 숫자 없음), 매칭 안 되면 기존값 유지
-                        const gradeNumber = g
-                          ? g.rank != null
-                            ? `${g.rank}등급`
-                            : ""
-                          : draft.gradeNumber;
-                        setDraft({ ...draft, finalGrade: v, gradeNumber });
-                      }}
-                      className="input"
-                      placeholder="Near Mint (NM)"
-                      list="grade-list"
-                    />
-                    <datalist id="grade-list">
-                      {GRADES.map((g) => (
-                        <option key={g.code} value={g.name} />
-                      ))}
-                    </datalist>
-                  </Field>
-                  <Field label="등급 숫자 (자동)">
-                    <input
-                      value={draft.gradeNumber}
-                      onChange={(e) => setDraft({ ...draft, gradeNumber: e.target.value })}
-                      className="input"
-                      placeholder="등급 선택 시 자동 입력"
-                    />
-                  </Field>
+                {/* 등급 (알판/자켓) */}
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-3">
+                      <h3 className="font-bold text-neutral-300">등급</h3>
+                      <label className="flex items-center gap-1.5 text-sm text-neutral-300 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={draft.sealed}
+                          onChange={(e) => {
+                            const sealed = e.target.checked;
+                            const canFill =
+                              !draft.summary.trim() ||
+                              draft.summary.trim() === DEFAULT_SUMMARY.trim() ||
+                              isAutoGradeSummary(draft.summary);
+                            const summary = sealed && canFill ? SEALED_SUMMARY : draft.summary;
+                            setDraft({ ...draft, sealed, summary });
+                          }}
+                        />
+                        미개봉(Sealed)
+                      </label>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setShowGuide(true)}
+                      className="text-xs px-2 py-1 rounded border border-neutral-600 text-neutral-300 hover:bg-neutral-800"
+                    >
+                      골드마인 등급표 보기
+                    </button>
+                  </div>
+
+                  {draft.sealed ? (
+                    <p className="text-sm text-neutral-500">
+                      밀봉 상태 — 알판/자켓 등급 없이 &ldquo;Still Sealed (미개봉)&rdquo;로 표시되고 내부 섹션은 자동 숨김됩니다.
+                    </p>
+                  ) : (
+                    <div className="grid grid-cols-2 gap-4">
+                      <Field label="알판(Media) 등급">
+                        <input
+                          value={draft.mediaGrade}
+                          onChange={(e) => {
+                            const v = e.target.value;
+                            const g = matchGrade(v);
+                            const canFill =
+                              !draft.summary.trim() ||
+                              draft.summary.trim() === DEFAULT_SUMMARY.trim() ||
+                              isAutoGradeSummary(draft.summary);
+                            const summary = g && canFill ? gradeSummary(v) : draft.summary;
+                            setDraft({ ...draft, mediaGrade: v, summary });
+                          }}
+                          className="input"
+                          placeholder="Near Mint (NM / M-)"
+                          list="grade-list"
+                        />
+                      </Field>
+                      <Field label="자켓(Sleeve) 등급">
+                        <input
+                          value={draft.sleeveGrade}
+                          onChange={(e) => setDraft({ ...draft, sleeveGrade: e.target.value })}
+                          className="input"
+                          placeholder="Very Good Plus (VG+)"
+                          list="grade-list"
+                        />
+                      </Field>
+                      <datalist id="grade-list">
+                        {GRADES.map((g) => (
+                          <option key={g.code} value={g.name} />
+                        ))}
+                      </datalist>
+                    </div>
+                  )}
                 </div>
 
                 {/* 음반 메타정보 (선택) */}
@@ -574,7 +601,18 @@ export default function AdminPage() {
                     {draft.sections.map((s, i) => (
                       <div key={s.id} className="rounded-xl border border-neutral-800 p-4 space-y-3">
                         <div className="flex items-center justify-between">
-                          <span className="text-xs text-neutral-500">섹션 {i + 1}</span>
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs text-neutral-500">섹션 {i + 1}</span>
+                            {s.required && (
+                              <span
+                                className={`text-xs px-2 py-0.5 rounded-full font-bold ${
+                                  s.image ? "bg-emerald-500/20 text-emerald-300" : "bg-red-500/20 text-red-300"
+                                }`}
+                              >
+                                📷 사진 필수{s.image ? "" : " · 미첨부"}
+                              </span>
+                            )}
+                          </div>
                           <button
                             onClick={() =>
                               setDraft({ ...draft, sections: draft.sections.filter((x) => x.id !== s.id) })
@@ -686,6 +724,42 @@ export default function AdminPage() {
           </div>
         </div>
       </div>
+
+      {/* 등급표 모달 */}
+      {showGuide && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-6 z-50" onClick={() => setShowGuide(false)}>
+          <div
+            className="bg-neutral-950 border border-neutral-700 rounded-2xl max-w-lg w-full max-h-[85vh] overflow-y-auto p-6"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between sticky top-0 bg-neutral-950 pb-3">
+              <h2 className="text-lg font-bold">골드마인(Goldmine) 등급표</h2>
+              <button onClick={() => setShowGuide(false)} className="text-neutral-400 hover:text-white text-2xl leading-none">×</button>
+            </div>
+            <ul className="space-y-2">
+              {GRADES.map((g) => {
+                const tags: string[] = [];
+                if (draft && matchGrade(draft.mediaGrade)?.code === g.code) tags.push("알판");
+                if (draft && matchGrade(draft.sleeveGrade)?.code === g.code) tags.push("자켓");
+                const isCurrent = tags.length > 0;
+                return (
+                  <li key={g.code} className={`rounded-xl border p-3 ${isCurrent ? "border-white bg-white/10" : "border-neutral-800"}`}>
+                    <div className="flex items-center gap-2">
+                      <span className="w-3 h-3 rounded-full" style={{ background: g.color }} />
+                      <span className="font-bold" style={{ color: g.color }}>{g.name}</span>
+                      {isCurrent && <span className="ml-auto text-xs text-white/60">현재 · {tags.join("/")}</span>}
+                    </div>
+                    <div className="mt-2 space-y-1.5 text-sm text-neutral-400 leading-relaxed">
+                      <p><span className="text-neutral-500 font-semibold">알판(Media)</span> · {g.mediaDesc}</p>
+                      <p><span className="text-neutral-500 font-semibold">자켓(Sleeve)</span> · {g.sleeveDesc}</p>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
+      )}
 
       <style jsx global>{`
         .input {
