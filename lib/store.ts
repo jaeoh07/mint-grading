@@ -4,7 +4,8 @@ import path from "path";
 export type ReportSection = {
   id: string;
   title: string; // 예: "자켓 앞면"
-  image?: string; // 줌인 사진 URL
+  image?: string; // (구버전) 단일 사진 URL — 하위호환용
+  images?: string[]; // 사진 여러 장 URL
   body: string; // 설명글
   required?: boolean; // 사진 필수 부위 여부 (관리자 참고용)
 };

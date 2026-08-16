@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { CheckItem, Record, ReportSection } from "@/lib/store";
-import { GRADES, matchGrade, gradeSummary, isAutoGradeSummary, SEALED_SUMMARY } from "@/lib/grade";
+import { GRADES, matchGrade, isAutoGradeSummary, combinedSummary } from "@/lib/grade";
 
 const uid = () => Math.random().toString(36).slice(2);
 
@@ -97,6 +97,15 @@ function newSection(): ReportSection {
 
 function newCheck(): CheckItem {
   return { id: uid(), label: "", value: "O" };
+}
+
+// 현재 총평이 자동 생성 초안인지(수동 편집본은 덮어쓰지 않음)
+function isAutoSummary(d: Record): boolean {
+  const t = (d.summary ?? "").trim();
+  if (!t) return true;
+  if (t === DEFAULT_SUMMARY.trim()) return true;
+  if (t === combinedSummary(d.mediaGrade, d.sleeveGrade, d.sealed).trim()) return true;
+  return isAutoGradeSummary(d.summary);
 }
 
 export default function AdminPage() {
@@ -240,6 +249,23 @@ export default function AdminPage() {
     }
   }
 
+  // Enter 키로 다음 입력칸으로 이동 (여러 줄 입력·체크박스·파일은 제외)
+  function handleFormKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
+    if (e.key !== "Enter") return;
+    const target = e.target as HTMLElement;
+    if (target.tagName !== "INPUT") return;
+    const type = (target as HTMLInputElement).type;
+    if (type === "file" || type === "checkbox") return;
+    e.preventDefault();
+    const focusables = Array.from(
+      e.currentTarget.querySelectorAll<HTMLElement>(
+        "input:not([type=hidden]):not([type=file]):not([disabled]):not([readonly]), textarea"
+      )
+    );
+    const idx = focusables.indexOf(target);
+    focusables[idx + 1]?.focus();
+  }
+
   // ----- 렌더링 -----
 
   if (authed === null) {
@@ -325,7 +351,7 @@ export default function AdminPage() {
             {!draft ? (
               <p className="text-neutral-600">왼쪽에서 음반을 선택하거나 &ldquo;+ 추가&rdquo;를 누르세요.</p>
             ) : (
-              <div className="space-y-6">
+              <div className="space-y-6" onKeyDown={handleFormKeyDown}>
                 {/* 상단 빠른 저장 바 */}
                 <div className="flex items-center gap-2 sticky top-0 z-10 bg-black/85 backdrop-blur py-2 -mx-1 px-1">
                   <button
@@ -407,12 +433,10 @@ export default function AdminPage() {
                           checked={draft.sealed}
                           onChange={(e) => {
                             const sealed = e.target.checked;
-                            const canFill =
-                              !draft.summary.trim() ||
-                              draft.summary.trim() === DEFAULT_SUMMARY.trim() ||
-                              isAutoGradeSummary(draft.summary);
-                            const summary = sealed && canFill ? SEALED_SUMMARY : draft.summary;
-                            setDraft({ ...draft, sealed, summary });
+                            const auto = isAutoSummary(draft);
+                            const next = { ...draft, sealed };
+                            if (auto) next.summary = combinedSummary(draft.mediaGrade, draft.sleeveGrade, sealed);
+                            setDraft(next);
                           }}
                         />
                         미개봉(Sealed)
@@ -438,13 +462,10 @@ export default function AdminPage() {
                           value={draft.mediaGrade}
                           onChange={(e) => {
                             const v = e.target.value;
-                            const g = matchGrade(v);
-                            const canFill =
-                              !draft.summary.trim() ||
-                              draft.summary.trim() === DEFAULT_SUMMARY.trim() ||
-                              isAutoGradeSummary(draft.summary);
-                            const summary = g && canFill ? gradeSummary(v) : draft.summary;
-                            setDraft({ ...draft, mediaGrade: v, summary });
+                            const auto = isAutoSummary(draft);
+                            const next = { ...draft, mediaGrade: v };
+                            if (auto) next.summary = combinedSummary(v, draft.sleeveGrade, draft.sealed);
+                            setDraft(next);
                           }}
                           className="input"
                           placeholder="Near Mint (NM / M-)"
@@ -454,7 +475,13 @@ export default function AdminPage() {
                       <Field label="자켓(Sleeve) 등급">
                         <input
                           value={draft.sleeveGrade}
-                          onChange={(e) => setDraft({ ...draft, sleeveGrade: e.target.value })}
+                          onChange={(e) => {
+                            const v = e.target.value;
+                            const auto = isAutoSummary(draft);
+                            const next = { ...draft, sleeveGrade: v };
+                            if (auto) next.summary = combinedSummary(draft.mediaGrade, v, draft.sealed);
+                            setDraft(next);
+                          }}
                           className="input"
                           placeholder="Very Good Plus (VG+)"
                           list="grade-list"
@@ -635,13 +662,15 @@ export default function AdminPage() {
                           className="input"
                           placeholder="1. 자켓(Cover) 상태"
                         />
-                        <ImageInput
-                          value={s.image ?? ""}
+                        <MultiImageInput
+                          values={s.images ?? (s.image ? [s.image] : [])}
                           onUpload={uploadImage}
-                          onChange={(url) =>
+                          onChange={(imgs) =>
                             setDraft({
                               ...draft,
-                              sections: draft.sections.map((x) => (x.id === s.id ? { ...x, image: url } : x)),
+                              sections: draft.sections.map((x) =>
+                                x.id === s.id ? { ...x, images: imgs, image: undefined } : x
+                              ),
                             })
                           }
                         />
@@ -833,6 +862,63 @@ function ImageInput({
           </button>
         )}
       </div>
+    </div>
+  );
+}
+
+// 섹션용: 사진 여러 장 (여러 개 선택·추가·개별 삭제)
+function MultiImageInput({
+  values,
+  onUpload,
+  onChange,
+}: {
+  values: string[];
+  onUpload: (file: File) => Promise<string | null>;
+  onChange: (urls: string[]) => void;
+}) {
+  const [busy, setBusy] = useState(false);
+  return (
+    <div className="space-y-2">
+      {values.length > 0 && (
+        <div className="flex flex-wrap gap-2">
+          {values.map((url, i) => (
+            <div key={i} className="relative">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={url} alt="" className="h-24 w-24 rounded-lg border border-neutral-800 object-cover bg-neutral-950" />
+              <button
+                type="button"
+                onClick={() => onChange(values.filter((_, j) => j !== i))}
+                className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 text-xs leading-none flex items-center justify-center"
+                aria-label="사진 삭제"
+              >
+                ×
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+      <label className="inline-block text-sm bg-neutral-800 rounded-lg px-3 py-1.5 cursor-pointer hover:bg-neutral-700">
+        {busy ? "업로드 중…" : "＋ 사진 추가"}
+        <input
+          type="file"
+          accept="image/*"
+          multiple
+          className="hidden"
+          onChange={async (e) => {
+            const files = Array.from(e.target.files ?? []);
+            if (!files.length) return;
+            setBusy(true);
+            const urls: string[] = [];
+            for (const f of files) {
+              const url = await onUpload(f);
+              if (url) urls.push(url);
+            }
+            setBusy(false);
+            if (urls.length) onChange([...values, ...urls]);
+            e.target.value = "";
+          }}
+        />
+      </label>
     </div>
   );
 }

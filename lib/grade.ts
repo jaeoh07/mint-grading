@@ -103,6 +103,23 @@ export function gradeSummary(grade: string): string {
   return g ? GRADE_SUMMARY[g.code] ?? "" : "";
 }
 
+// 알판(Media)·자켓(Sleeve) 등급을 모두 반영한 총평 초안
+export function combinedSummary(mediaGrade: string, sleeveGrade: string, sealed: boolean): string {
+  if (sealed) return SEALED_SUMMARY;
+  const m = matchGrade(mediaGrade);
+  const s = matchGrade(sleeveGrade);
+  const base = "본 음반은 골드마인(Goldmine) 표준 등급 기준에 의거하여, ";
+  if (m && s) {
+    if (m.code === s.code) {
+      return `${base}알판(Media)·자켓(Sleeve) 모두 [${m.name}]으로 판정되었습니다.`;
+    }
+    return `${base}알판(Media)은 [${m.name}], 자켓(Sleeve)은 [${s.name}]으로 판정되었습니다.`;
+  }
+  if (m) return `${base}알판(Media) [${m.name}]으로 판정되었습니다.`;
+  if (s) return `${base}자켓(Sleeve) [${s.name}]으로 판정되었습니다.`;
+  return "";
+}
+
 // 현재 총평이 자동 생성 초안인지(수동 편집본은 덮어쓰지 않기 위함)
 export function isAutoGradeSummary(s: string): boolean {
   const t = (s ?? "").trim();

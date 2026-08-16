@@ -178,15 +178,24 @@ export default function ResultPage({
             {visibleSections.map((s) => (
               <div key={s.id}>
                 <h3 className="font-bold">{s.title}</h3>
-                {s.image ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={s.image}
-                    alt={s.title}
-                    onClick={() => setZoom(s.image!)}
-                    className="mt-3 rounded-lg w-full object-contain max-h-80 bg-black/20 cursor-zoom-in"
-                  />
-                ) : null}
+                {(() => {
+                  const imgs = s.images && s.images.length ? s.images : s.image ? [s.image] : [];
+                  if (!imgs.length) return null;
+                  return (
+                    <div className={`mt-3 grid gap-2 ${imgs.length > 1 ? "grid-cols-2" : "grid-cols-1"}`}>
+                      {imgs.map((url, i) => (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          key={i}
+                          src={url}
+                          alt={s.title}
+                          onClick={() => setZoom(url)}
+                          className="rounded-lg w-full object-contain max-h-80 bg-black/20 cursor-zoom-in"
+                        />
+                      ))}
+                    </div>
+                  );
+                })()}
                 <p className="mt-3 text-white/80 leading-relaxed whitespace-pre-wrap">{s.body}</p>
               </div>
             ))}
