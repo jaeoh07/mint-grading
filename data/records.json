@@ -308,14 +308,14 @@
         {
           "id": "ydyhc6435s",
           "title": "자켓 앞면",
-          "image": "",
+          "image": "/uploads/1786510164775-f9b184a7.jpg",
           "body": "전반적인 보존 상태 양호. 인쇄 선명하며 변색·오염 흔적 없음.",
           "required": true
         },
         {
           "id": "7pfhzuooh8j",
           "title": "자켓 뒷면",
-          "image": "",
+          "image": "/uploads/1786510172626-50b366c9.jpg",
           "body": "변색·습기 흔적 없이 깨끗함. 크레딧/트랙 정보 인쇄 양호.",
           "required": true
         },
@@ -323,25 +323,25 @@
           "id": "2zy6ylwsk08",
           "title": "모서리 마모",
           "image": "",
-          "body": "네 모서리 상태 양호. (마모 있을 시 위치·크기 기재)",
+          "body": "네 모서리 상태 양호",
           "required": false
         },
         {
           "id": "uih1v71gcep",
           "title": "자켓 눌림·번짐·헤어라인",
           "image": "",
-          "body": "표면 눌림(Crease)·잉크 번짐 없음.",
+          "body": "표면 눌림 잉크 번짐 없음.",
           "required": false
         }
       ],
-      "summary": "골드마인(Goldmine) 표준 등급 기준에 의거하여, 치명적인 손상이 없는 우수한 상태로 판정되어 최종 [ 등급 ] 부여되었습니다.",
+      "summary": "본 음반은 공장 밀봉(Still Sealed) 상태로, 개봉 이력 없이 외관·씰 기준으로 확인되었습니다. 밀봉 특성상 내부 알판은 미검수입니다.",
       "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-11T05:42:43.196Z",
+      "updatedAt": "2026-08-12T05:12:15.650Z",
       "gradedDate": "2026-08-11",
       "graderName": "이도윤",
-      "mediaGrade": "",
-      "sleeveGrade": "",
-      "sealed": true
+      "mediaGrade": "Mint (M)",
+      "sleeveGrade": "Mint (M)",
+      "sealed": false
     },
     {
       "code": "MINT/8BZDS2",
@@ -620,6 +620,67 @@
       "mediaGrade": "",
       "sleeveGrade": "",
       "sealed": false
+    },
+    {
+      "code": "MINT/26UPBX",
+      "albumTitle": "뉴진스 일본 싱글 1집 [Supernatural]",
+      "format": "CD",
+      "coverImage": "/uploads/1786507286065-6bc0cb67.png",
+      "mediaGrade": "Mint (M)",
+      "sleeveGrade": "Mint (M)",
+      "sealed": false,
+      "checks": [
+        {
+          "id": "c8rjg0y31dl",
+          "label": "가사지 여부",
+          "value": "O"
+        }
+      ],
+      "sections": [
+        {
+          "id": "jlfww5a2w5",
+          "title": "자켓(부클릿) 앞면",
+          "image": "/uploads/1786507619921-4c85c3ac.jpg",
+          "body": "전반적인 보존 상태 양호. 인쇄 선명하며 변색·오염 흔적 없음.",
+          "required": true
+        },
+        {
+          "id": "r5rihxdarm",
+          "title": "자켓 뒷면(인레이)",
+          "image": "/uploads/1786507631677-bce7ed43.jpg",
+          "body": "변색·손상 없이 양호.",
+          "required": true
+        },
+        {
+          "id": "2hao668xkv",
+          "title": "디스크 재생면(하판) 스크래치",
+          "image": "/uploads/1786509613368-e2d37332.jpg",
+          "body": "특이 스크래치 없음. ",
+          "required": true
+        },
+        {
+          "id": "tv5biqxedei",
+          "title": "디스크 레이블면(상판)",
+          "image": "",
+          "body": "인쇄 선명하며 손상·벗겨짐 없음.",
+          "required": false
+        },
+        {
+          "id": "3uzecarwvd3",
+          "title": "부클릿 내부 상태",
+          "image": "",
+          "body": "구겨짐·변색·필기 없이 깨끗함.",
+          "required": false
+        }
+      ],
+      "summary": "본 음반은 사용 흔적이 전혀 확인되지 않는 신품 수준으로, 골드마인 표준상 최상급 [Mint]으로 판정되었습니다.",
+      "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
+      "updatedAt": "2026-08-12T04:40:28.101Z",
+      "graderName": "이도윤",
+      "releaseYear": "2024",
+      "label": "YG PLUS / Kakao Entertainment",
+      "country": "한",
+      "gradedDate": "2026-08-12"
     }
   ]
 }

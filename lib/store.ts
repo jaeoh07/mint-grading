@@ -41,33 +41,60 @@ export type Record = {
 const DATA_DIR = path.join(process.cwd(), "data");
 const DATA_FILE = path.join(DATA_DIR, "records.json");
 
+// 배포(Vercel)에선 파일 저장이 안 되므로 Vercel Blob 사용, 로컬에선 파일 사용
+const USE_BLOB = !!process.env.BLOB_READ_WRITE_TOKEN;
+const BLOB_KEY = "data/records.json";
+
 // 조회 시 대소문자/공백 차이를 무시하기 위한 정규화
 export function normalizeCode(code: string): string {
   return code.trim().toUpperCase().replace(/\s+/g, "");
 }
 
-async function ensureFile(): Promise<void> {
+// 리포지토리에 커밋된 기본 기록 파일 읽기 (배포 시 Blob 시드용 / 로컬 저장용)
+async function readFileRecords(): Promise<Record[]> {
   try {
-    await fs.access(DATA_FILE);
-  } catch {
-    await fs.mkdir(DATA_DIR, { recursive: true });
-    await fs.writeFile(DATA_FILE, JSON.stringify({ records: [] }, null, 2), "utf-8");
-  }
-}
-
-export async function getAll(): Promise<Record[]> {
-  await ensureFile();
-  const raw = await fs.readFile(DATA_FILE, "utf-8");
-  try {
-    const parsed = JSON.parse(raw);
+    const parsed = JSON.parse(await fs.readFile(DATA_FILE, "utf-8"));
     return Array.isArray(parsed.records) ? parsed.records : [];
   } catch {
     return [];
   }
 }
 
+export async function getAll(): Promise<Record[]> {
+  if (USE_BLOB) {
+    try {
+      const { list } = await import("@vercel/blob");
+      const { blobs } = await list({ prefix: BLOB_KEY });
+      const blob = blobs.find((b) => b.pathname === BLOB_KEY);
+      if (blob) {
+        const res = await fetch(`${blob.url}?t=${Date.now()}`, { cache: "no-store" });
+        if (res.ok) {
+          const parsed = await res.json();
+          if (Array.isArray(parsed.records)) return parsed.records;
+        }
+      }
+    } catch {
+      // Blob 접근 실패 시 아래 기본 기록으로 폴백
+    }
+    // Blob이 비어있으면 커밋된 기존 기록으로 시드(기록 보존)
+    return await readFileRecords();
+  }
+  return await readFileRecords();
+}
+
 async function saveAll(records: Record[]): Promise<void> {
-  await ensureFile();
+  if (USE_BLOB) {
+    const { put } = await import("@vercel/blob");
+    await put(BLOB_KEY, JSON.stringify({ records }, null, 2), {
+      access: "public",
+      addRandomSuffix: false,
+      allowOverwrite: true,
+      contentType: "application/json",
+      cacheControlMaxAge: 0,
+    });
+    return;
+  }
+  await fs.mkdir(DATA_DIR, { recursive: true });
   await fs.writeFile(DATA_FILE, JSON.stringify({ records }, null, 2), "utf-8");
 }
 

@@ -203,7 +203,7 @@ export default function AdminPage() {
     });
     setSaving(false);
     if (res.ok) {
-      setMessage("저장되었습니다.");
+      setMessage("✅ 저장 완료!");
       await loadRecords();
       if (keepOpen) {
         setOriginalCode(draft.code); // 계속 편집 (QR 출력 등)
