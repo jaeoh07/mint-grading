@@ -42,16 +42,23 @@ export type Record = {
 const DATA_DIR = path.join(process.cwd(), "data");
 const DATA_FILE = path.join(DATA_DIR, "records.json");
 
-// 배포(Vercel)에선 파일 저장이 안 되므로 Vercel Blob 사용, 로컬에선 파일 사용
-const USE_BLOB = !!process.env.BLOB_READ_WRITE_TOKEN;
-const BLOB_KEY = "data/records.json";
+// 레코드는 즉시 반영이 필요하므로 Upstash Redis(KV) 사용. 없으면 로컬 파일.
+const KV_URL = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+const KV_TOKEN = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+const USE_KV = !!(KV_URL && KV_TOKEN);
+const KV_KEY = "mint:records";
+
+async function kv() {
+  const { Redis } = await import("@upstash/redis");
+  return new Redis({ url: KV_URL, token: KV_TOKEN });
+}
 
 // 조회 시 대소문자/공백 차이를 무시하기 위한 정규화
 export function normalizeCode(code: string): string {
   return code.trim().toUpperCase().replace(/\s+/g, "");
 }
 
-// 리포지토리에 커밋된 기본 기록 파일 읽기 (배포 시 Blob 시드용 / 로컬 저장용)
+// 리포지토리에 커밋된 기본 기록 파일 읽기 (KV 시드용 / 로컬 저장용)
 async function readFileRecords(): Promise<Record[]> {
   try {
     const parsed = JSON.parse(await fs.readFile(DATA_FILE, "utf-8"));
@@ -62,37 +69,26 @@ async function readFileRecords(): Promise<Record[]> {
 }
 
 export async function getAll(): Promise<Record[]> {
-  if (USE_BLOB) {
+  if (USE_KV) {
     try {
-      const { list } = await import("@vercel/blob");
-      const { blobs } = await list({ prefix: BLOB_KEY });
-      const blob = blobs.find((b) => b.pathname === BLOB_KEY);
-      if (blob) {
-        const res = await fetch(`${blob.url}?t=${Date.now()}`, { cache: "no-store" });
-        if (res.ok) {
-          const parsed = await res.json();
-          if (Array.isArray(parsed.records)) return parsed.records;
-        }
-      }
+      const r = await kv();
+      const data = await r.get<{ records: Record[] }>(KV_KEY);
+      if (data && Array.isArray(data.records)) return data.records;
+      // KV가 비어있으면 커밋된 기존 기록으로 초기화(데이터 보존)
+      const seed = await readFileRecords();
+      await r.set(KV_KEY, { records: seed });
+      return seed;
     } catch {
-      // Blob 접근 실패 시 아래 기본 기록으로 폴백
+      return await readFileRecords();
     }
-    // Blob이 비어있으면 커밋된 기존 기록으로 시드(기록 보존)
-    return await readFileRecords();
   }
   return await readFileRecords();
 }
 
 async function saveAll(records: Record[]): Promise<void> {
-  if (USE_BLOB) {
-    const { put } = await import("@vercel/blob");
-    await put(BLOB_KEY, JSON.stringify({ records }, null, 2), {
-      access: "public",
-      addRandomSuffix: false,
-      allowOverwrite: true,
-      contentType: "application/json",
-      cacheControlMaxAge: 0,
-    });
+  if (USE_KV) {
+    const r = await kv();
+    await r.set(KV_KEY, { records });
     return;
   }
   await fs.mkdir(DATA_DIR, { recursive: true });
