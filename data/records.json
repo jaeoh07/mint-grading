@@ -136,10 +136,10 @@
           "required": false
         }
       ],
-      "summary": "본 음반은 골드마인(Goldmine) 표준 등급 기준에 의거하여, 알판(Media)은 육안상 사용 흔적이 없는 [Near Mint (NM / M-)], 자켓(Sleeve)은 속지 일부 터짐 외 양호하여 [Very Good Plus (VG+)]으로 판정되었습니다.",
+      "summary": "본 음반은 골드마인(Goldmine) 표준 등급 기준에 의거하여, 알판(Media)은 [Mint (M)], 자켓(Sleeve)은 [Near Mint (NM / M-)]으로 판정되었습니다.",
       "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-18T02:57:00.047Z",
-      "mediaGrade": "Near Mint (NM / M-)",
+      "updatedAt": "2026-08-18T04:09:52.131Z",
+      "mediaGrade": "Mint (M)",
       "sleeveGrade": "Near Mint (NM / M-)",
       "sealed": false,
       "gradedDate": "2026-08-16",
@@ -401,12 +401,13 @@
         },
         {
           "id": "ata6nfn9y9n",
-          "title": "자켓 눌림·번짐·링웨어 현상",
-          "body": "뒷면에 작은 링웨어 발견",
+          "title": "자켓 링웨어 스크레치 현상",
+          "body": "뒷면에 작은 링웨어와 잦은 스크레치들 확인",
           "required": false,
           "images": [
-            "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1787020176831-d3508d8c.webp",
-            "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1787020179745-52073e06.webp"
+            "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1787025555508-30df495d.webp",
+            "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1787025573936-ba6fa4dd.webp",
+            "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1787025580410-8803361e.webp"
           ]
         },
         {
@@ -419,7 +420,7 @@
       ],
       "summary": "본 음반은 골드마인(Goldmine) 표준 등급 기준에 의거하여, 알판(Media)은 A면 경미한 스크래치가 확인되어 [Very Good Plus (VG+)], 자켓(Sleeve)은 모서리 마모가 확인되어 [Very Good Plus (VG+)]으로 판정되었습니다.",
       "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-18T03:08:38.170Z",
+      "updatedAt": "2026-08-18T04:00:16.430Z",
       "mediaGrade": "Very Good Plus (VG+)",
       "sleeveGrade": "Very Good Plus (VG+)",
       "sealed": false,

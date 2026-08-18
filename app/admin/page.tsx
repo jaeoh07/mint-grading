@@ -5,7 +5,6 @@ import type { CheckItem, Record, ReportSection } from "@/lib/store";
 import {
   GRADES,
   matchGrade,
-  isAutoGradeSummary,
   combinedSummary,
   sectionDraftFor,
   isGradeDraftBody,
@@ -106,15 +105,6 @@ function newSection(): ReportSection {
 
 function newCheck(): CheckItem {
   return { id: uid(), label: "", value: "O" };
-}
-
-// 현재 총평이 자동 생성 초안인지(수동 편집본은 덮어쓰지 않음)
-function isAutoSummary(d: Record): boolean {
-  const t = (d.summary ?? "").trim();
-  if (!t) return true;
-  if (t === DEFAULT_SUMMARY.trim()) return true;
-  if (t === combinedSummary(d.mediaGrade, d.sleeveGrade, d.sealed).trim()) return true;
-  return isAutoGradeSummary(d.summary);
 }
 
 // 섹션 본문이 '아직 손대지 않은 초안'인지 — 기본 템플릿 문구 + 등급별 초안 문구 + 빈칸
@@ -469,9 +459,10 @@ export default function AdminPage() {
                           checked={draft.sealed}
                           onChange={(e) => {
                             const sealed = e.target.checked;
-                            const auto = isAutoSummary(draft);
                             const next = { ...draft, sealed };
-                            if (auto) next.summary = combinedSummary(draft.mediaGrade, draft.sleeveGrade, sealed);
+                            // 밀봉 여부를 바꿔도 총평 실시간 반영
+                            const s = combinedSummary(draft.mediaGrade, draft.sleeveGrade, sealed);
+                            if (s) next.summary = s;
                             setDraft(next);
                           }}
                         />
@@ -498,9 +489,10 @@ export default function AdminPage() {
                           value={draft.mediaGrade}
                           onChange={(e) => {
                             const v = e.target.value;
-                            const auto = isAutoSummary(draft);
                             const next = { ...draft, mediaGrade: v };
-                            if (auto) next.summary = combinedSummary(v, draft.sleeveGrade, draft.sealed);
+                            // 등급을 바꾸면 총평도 실시간으로 그 등급에 맞게 다시 씀
+                            const s = combinedSummary(v, draft.sleeveGrade, draft.sealed);
+                            if (s) next.summary = s;
                             next.sections = applyGradeDrafts(next);
                             setDraft(next);
                           }}
@@ -514,9 +506,10 @@ export default function AdminPage() {
                           value={draft.sleeveGrade}
                           onChange={(e) => {
                             const v = e.target.value;
-                            const auto = isAutoSummary(draft);
                             const next = { ...draft, sleeveGrade: v };
-                            if (auto) next.summary = combinedSummary(draft.mediaGrade, v, draft.sealed);
+                            // 등급을 바꾸면 총평도 실시간으로 그 등급에 맞게 다시 씀
+                            const s = combinedSummary(draft.mediaGrade, v, draft.sealed);
+                            if (s) next.summary = s;
                             next.sections = applyGradeDrafts(next);
                             setDraft(next);
                           }}
@@ -766,6 +759,9 @@ export default function AdminPage() {
                     rows={3}
                     className="input"
                   />
+                  <p className="mt-1.5 text-xs text-neutral-500">
+                    알판/자켓 등급을 바꾸면 총평이 자동으로 그 등급에 맞게 다시 써집니다. 직접 손본 내용은 다음에 등급을 바꿀 때 초기화되니, <b>등급을 먼저 정하고 총평은 마지막에 다듬으세요.</b>
+                  </p>
                 </Field>
 
                 <Field label="면책 및 재검수 조항">
