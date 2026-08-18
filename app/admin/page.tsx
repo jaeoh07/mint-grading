@@ -451,24 +451,7 @@ export default function AdminPage() {
                 {/* 등급 (알판/자켓) */}
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center gap-3">
-                      <h3 className="font-bold text-neutral-300">등급</h3>
-                      <label className="flex items-center gap-1.5 text-sm text-neutral-300 cursor-pointer">
-                        <input
-                          type="checkbox"
-                          checked={draft.sealed}
-                          onChange={(e) => {
-                            const sealed = e.target.checked;
-                            const next = { ...draft, sealed };
-                            // 밀봉 여부를 바꿔도 총평 실시간 반영
-                            const s = combinedSummary(draft.mediaGrade, draft.sleeveGrade, sealed);
-                            if (s) next.summary = s;
-                            setDraft(next);
-                          }}
-                        />
-                        미개봉(Sealed)
-                      </label>
-                    </div>
+                    <h3 className="font-bold text-neutral-300">등급</h3>
                     <button
                       type="button"
                       onClick={() => setShowGuide(true)}
@@ -478,53 +461,47 @@ export default function AdminPage() {
                     </button>
                   </div>
 
-                  {draft.sealed ? (
-                    <p className="text-sm text-neutral-500">
-                      밀봉 상태 — 알판/자켓 등급 없이 &ldquo;Still Sealed (미개봉)&rdquo;로 표시되고 내부 섹션은 자동 숨김됩니다.
-                    </p>
-                  ) : (
-                    <div className="grid grid-cols-2 gap-4">
-                      <Field label="알판(Media) 등급">
-                        <input
-                          value={draft.mediaGrade}
-                          onChange={(e) => {
-                            const v = e.target.value;
-                            const next = { ...draft, mediaGrade: v };
-                            // 등급을 바꾸면 총평도 실시간으로 그 등급에 맞게 다시 씀
-                            const s = combinedSummary(v, draft.sleeveGrade, draft.sealed);
-                            if (s) next.summary = s;
-                            next.sections = applyGradeDrafts(next);
-                            setDraft(next);
-                          }}
-                          className="input"
-                          placeholder="Near Mint (NM / M-)"
-                          list="grade-list"
-                        />
-                      </Field>
-                      <Field label="자켓(Sleeve) 등급">
-                        <input
-                          value={draft.sleeveGrade}
-                          onChange={(e) => {
-                            const v = e.target.value;
-                            const next = { ...draft, sleeveGrade: v };
-                            // 등급을 바꾸면 총평도 실시간으로 그 등급에 맞게 다시 씀
-                            const s = combinedSummary(draft.mediaGrade, v, draft.sealed);
-                            if (s) next.summary = s;
-                            next.sections = applyGradeDrafts(next);
-                            setDraft(next);
-                          }}
-                          className="input"
-                          placeholder="Very Good Plus (VG+)"
-                          list="grade-list"
-                        />
-                      </Field>
-                      <datalist id="grade-list">
-                        {GRADES.map((g) => (
-                          <option key={g.code} value={g.name} />
-                        ))}
-                      </datalist>
-                    </div>
-                  )}
+                  <div className="grid grid-cols-2 gap-4">
+                    <Field label="알판(Media) 등급">
+                      <input
+                        value={draft.mediaGrade}
+                        onChange={(e) => {
+                          const v = e.target.value;
+                          const next = { ...draft, mediaGrade: v };
+                          // 등급을 바꾸면 총평도 실시간으로 그 등급에 맞게 다시 씀
+                          const s = combinedSummary(v, draft.sleeveGrade, draft.sealed);
+                          if (s) next.summary = s;
+                          next.sections = applyGradeDrafts(next);
+                          setDraft(next);
+                        }}
+                        className="input"
+                        placeholder="Near Mint (NM / M-)"
+                        list="grade-list"
+                      />
+                    </Field>
+                    <Field label="자켓(Sleeve) 등급">
+                      <input
+                        value={draft.sleeveGrade}
+                        onChange={(e) => {
+                          const v = e.target.value;
+                          const next = { ...draft, sleeveGrade: v };
+                          // 등급을 바꾸면 총평도 실시간으로 그 등급에 맞게 다시 씀
+                          const s = combinedSummary(draft.mediaGrade, v, draft.sealed);
+                          if (s) next.summary = s;
+                          next.sections = applyGradeDrafts(next);
+                          setDraft(next);
+                        }}
+                        className="input"
+                        placeholder="Very Good Plus (VG+)"
+                        list="grade-list"
+                      />
+                    </Field>
+                    <datalist id="grade-list">
+                      {GRADES.map((g) => (
+                        <option key={g.code} value={g.name} />
+                      ))}
+                    </datalist>
+                  </div>
                 </div>
 
                 {/* 음반 메타정보 (선택) */}
