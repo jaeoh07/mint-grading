@@ -2,7 +2,16 @@
 
 import { useEffect, useState } from "react";
 import type { CheckItem, Record, ReportSection } from "@/lib/store";
-import { GRADES, matchGrade, isAutoGradeSummary, combinedSummary } from "@/lib/grade";
+import {
+  GRADES,
+  matchGrade,
+  isAutoGradeSummary,
+  combinedSummary,
+  sectionDraftFor,
+  isGradeDraftBody,
+  DISC_DRAFT,
+  SLEEVE_INTRO_DRAFT,
+} from "@/lib/grade";
 
 const uid = () => Math.random().toString(36).slice(2);
 
@@ -106,6 +115,33 @@ function isAutoSummary(d: Record): boolean {
   if (t === DEFAULT_SUMMARY.trim()) return true;
   if (t === combinedSummary(d.mediaGrade, d.sleeveGrade, d.sealed).trim()) return true;
   return isAutoGradeSummary(d.summary);
+}
+
+// 섹션 본문이 '아직 손대지 않은 초안'인지 — 기본 템플릿 문구 + 등급별 초안 문구 + 빈칸
+const AUTO_BODY_SET = new Set<string>(
+  [
+    ...DEFAULT_SECTIONS_LP.map((s) => s.body),
+    ...DEFAULT_SECTIONS_CD.map((s) => s.body),
+    ...Object.values(DISC_DRAFT),
+    ...Object.values(SLEEVE_INTRO_DRAFT),
+  ]
+    .map((s) => s.trim())
+    .filter((s) => s.length > 0)
+);
+function isAutoBody(body: string): boolean {
+  const t = (body ?? "").trim();
+  return t === "" || AUTO_BODY_SET.has(t) || isGradeDraftBody(t);
+}
+
+// 등급에 맞춰 섹션 초안 다시 채우기.
+// force=false: 손대지 않은(초안) 섹션만 교체 / force=true: 등급 대상 섹션 전부 교체
+function applyGradeDrafts(d: Record, force = false): ReportSection[] {
+  return d.sections.map((s) => {
+    const draft = sectionDraftFor(s.title, d.mediaGrade, d.sleeveGrade);
+    if (draft === null) return s; // 등급 자동초안 대상 아님(모서리·눌림 등)
+    if (!force && !isAutoBody(s.body)) return s; // 수동 편집본은 보호
+    return { ...s, body: draft };
+  });
 }
 
 export default function AdminPage() {
@@ -465,6 +501,7 @@ export default function AdminPage() {
                             const auto = isAutoSummary(draft);
                             const next = { ...draft, mediaGrade: v };
                             if (auto) next.summary = combinedSummary(v, draft.sleeveGrade, draft.sealed);
+                            next.sections = applyGradeDrafts(next);
                             setDraft(next);
                           }}
                           className="input"
@@ -480,6 +517,7 @@ export default function AdminPage() {
                             const auto = isAutoSummary(draft);
                             const next = { ...draft, sleeveGrade: v };
                             if (auto) next.summary = combinedSummary(draft.mediaGrade, v, draft.sealed);
+                            next.sections = applyGradeDrafts(next);
                             setDraft(next);
                           }}
                           className="input"
@@ -615,15 +653,40 @@ export default function AdminPage() {
 
                 {/* 상세 섹션 */}
                 <div>
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-2">
                     <h3 className="font-bold text-neutral-300">상세 감정 리포트 섹션</h3>
-                    <button
-                      onClick={() => setDraft({ ...draft, sections: [...draft.sections, newSection()] })}
-                      className="text-sm bg-neutral-800 rounded-lg px-3 py-1 hover:bg-neutral-700"
-                    >
-                      + 섹션
-                    </button>
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (!matchGrade(draft.mediaGrade) && !matchGrade(draft.sleeveGrade)) {
+                            setMessage("먼저 알판/자켓 등급을 선택하세요.");
+                            return;
+                          }
+                          if (
+                            confirm(
+                              "디스크·자켓 앞뒤 섹션 설명을 현재 등급 기준 초안으로 다시 채웁니다. 직접 쓴 내용도 덮어쓸 수 있어요. 진행할까요?"
+                            )
+                          ) {
+                            setDraft({ ...draft, sections: applyGradeDrafts(draft, true) });
+                          }
+                        }}
+                        className="text-sm border border-neutral-600 rounded-lg px-3 py-1 hover:bg-neutral-800"
+                        title="현재 등급에 맞는 문구로 디스크·자켓 앞뒤 섹션을 다시 채웁니다"
+                      >
+                        등급에 맞춰 초안 채우기
+                      </button>
+                      <button
+                        onClick={() => setDraft({ ...draft, sections: [...draft.sections, newSection()] })}
+                        className="text-sm bg-neutral-800 rounded-lg px-3 py-1 hover:bg-neutral-700"
+                      >
+                        + 섹션
+                      </button>
+                    </div>
                   </div>
+                  <p className="mt-2 text-xs text-neutral-500">
+                    알판/자켓 등급을 고르면 디스크·자켓 앞뒤 섹션 설명이 등급에 맞는 초안으로 자동 채워집니다. (직접 쓴 내용은 유지)
+                  </p>
                   <div className="mt-4 space-y-4">
                     {draft.sections.map((s, i) => (
                       <div key={s.id} className="rounded-xl border border-neutral-800 p-4 space-y-3">

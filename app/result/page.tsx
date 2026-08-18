@@ -196,7 +196,9 @@ export default function ResultPage({
                     </div>
                   );
                 })()}
-                <p className="mt-3 text-white/80 leading-relaxed whitespace-pre-wrap">{s.body}</p>
+                {s.body && s.body.trim() && (
+                  <p className="mt-3 text-white/80 leading-relaxed whitespace-pre-wrap">{s.body}</p>
+                )}
               </div>
             ))}
           </div>

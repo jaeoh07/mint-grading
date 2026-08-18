@@ -126,3 +126,65 @@ export function isAutoGradeSummary(s: string): boolean {
   if (!t) return false;
   return t === SEALED_SUMMARY.trim() || Object.values(GRADE_SUMMARY).some((v) => v.trim() === t);
 }
+
+// ── 등급별 섹션 초안 ─────────────────────────────────────────────
+// 관리자에서 알판/자켓 등급을 고르면, 그 등급에 맞는 섹션 상세설명 초안이 자동으로 채워짐.
+// (손으로 쓴 내용은 덮어쓰지 않음 — isKnownSectionDraft로 판별)
+
+// 디스크(알판) 섹션 초안 — 알판(Media) 등급 기준
+export const DISC_DRAFT: { [code: string]: string } = {
+  M: "표면에 흠·스커프가 전혀 없는 완벽한 상태. 신품 수준의 광택.",
+  NM: "육안상 사용 흔적이 없고 눈에 띄는 흠이 없는 거의 완벽한 표면.",
+  "VG+": "경미한 잔기스·스커프가 있으나 표면 상태는 전반적으로 양호.",
+  VG: "육안으로 보이는 스크래치·표면 마모가 확인됨. (위치·정도는 사진 참고)",
+  "G+": "스크래치·표면 마모가 다수 확인되어 표면 상태가 눈에 띄게 좋지 않음.",
+  G: "스크래치·마모가 다수로 표면 상태가 좋지 않음.",
+  F: "표면 손상이 심함(심한 스크래치·균열 등).",
+  P: "균열·심한 손상 등으로 상태가 매우 나쁨. 소장·자료용 수준.",
+};
+
+// 자켓 앞/뒤 '초반 설명' 초안 — 자켓(Sleeve) 등급 기준
+// VG+ 이하(사용감·마모 있음)는 빈 문자열 → "깨끗함" 같은 과장 문구를 넣지 않고 사진으로 대체,
+// 하자는 아래 개별 섹션에 따로 기재한다.
+export const SLEEVE_INTRO_DRAFT: { [code: string]: string } = {
+  M: "접힘·마모·변색·링웨어가 전혀 없는 완벽한 상태. 인쇄 선명.",
+  NM: "눈에 띄는 결함 없이 깨끗함. 인쇄 선명하며 변색·오염 없음.",
+  "VG+": "",
+  VG: "",
+  "G+": "",
+  G: "",
+  F: "",
+  P: "",
+};
+
+// 섹션 제목으로 종류 판별 (디스크 섹션 우선)
+const DISC_TITLE = /디스크|재생면|하판|상판|레이블면|알판|음반면|A면|B면/i;
+const SLEEVE_INTRO_TITLE = /(자켓|커버|부클릿|인레이|슬리브).*(앞|뒤)|앞면|뒷면/;
+
+// 이 섹션에 등급 기준 초안이 있으면 반환, 없으면 null(등급 자동초안 대상 아님)
+export function sectionDraftFor(
+  title: string,
+  mediaGrade: string,
+  sleeveGrade: string
+): string | null {
+  const t = title ?? "";
+  if (DISC_TITLE.test(t)) {
+    const g = matchGrade(mediaGrade);
+    return g ? DISC_DRAFT[g.code] ?? "" : null;
+  }
+  if (SLEEVE_INTRO_TITLE.test(t)) {
+    const g = matchGrade(sleeveGrade);
+    return g ? SLEEVE_INTRO_DRAFT[g.code] ?? "" : null;
+  }
+  return null;
+}
+
+// 어떤 본문이 '자동 생성된 초안'인지(수동 편집본 보호용) — 등급 초안 문구 전체 집합
+const GRADE_DRAFT_STRINGS = new Set<string>(
+  [...Object.values(DISC_DRAFT), ...Object.values(SLEEVE_INTRO_DRAFT)]
+    .map((s) => s.trim())
+    .filter((s) => s.length > 0)
+);
+export function isGradeDraftBody(body: string): boolean {
+  return GRADE_DRAFT_STRINGS.has((body ?? "").trim());
+}

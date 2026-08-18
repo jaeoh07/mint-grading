@@ -121,10 +121,12 @@
         },
         {
           "id": "apbm3sbceit",
-          "title": "자켓 눌림·번짐·헤어라인",
-          "image": "",
-          "body": "표면 눌림 잉크 번짐 없음.",
-          "required": false
+          "title": "속지 터짐",
+          "body": "속지 터진부분 발견",
+          "required": false,
+          "images": [
+            "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1787020647289-9f3e4f33.webp"
+          ]
         },
         {
           "id": "isbcihscka",
@@ -134,11 +136,11 @@
           "required": false
         }
       ],
-      "summary": "본 음반은 골드마인(Goldmine) 표준 등급 기준에 의거하여, 알판(Media)은 사용 흔적이 없는 [Mint (M)], 자켓(Sleeve)은 속지 일부 터짐 외 양호하여 [Very Good Plus (VG+)]으로 판정되었습니다.",
+      "summary": "본 음반은 골드마인(Goldmine) 표준 등급 기준에 의거하여, 알판(Media)은 육안상 사용 흔적이 없는 [Near Mint (NM / M-)], 자켓(Sleeve)은 속지 일부 터짐 외 양호하여 [Very Good Plus (VG+)]으로 판정되었습니다.",
       "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-16T12:16:33.660Z",
-      "mediaGrade": "Mint (M)",
-      "sleeveGrade": "Very Good Plus (VG+)",
+      "updatedAt": "2026-08-18T02:57:00.047Z",
+      "mediaGrade": "Near Mint (NM / M-)",
+      "sleeveGrade": "Near Mint (NM / M-)",
       "sealed": false,
       "gradedDate": "2026-08-16",
       "graderName": "이도윤"
@@ -308,14 +310,14 @@
           "id": "ydyhc6435s",
           "title": "자켓 앞면",
           "image": "/uploads/1786510164775-f9b184a7.jpg",
-          "body": "전반적인 보존 상태 양호. 인쇄 선명하며 변색·오염 흔적 없음.",
+          "body": "전반적인 보존 상태 양호. ",
           "required": true
         },
         {
           "id": "7pfhzuooh8j",
           "title": "자켓 뒷면",
           "image": "/uploads/1786510172626-50b366c9.jpg",
-          "body": "변색·습기 흔적 없이 깨끗함. 크레딧/트랙 정보 인쇄 양호.",
+          "body": "변색·습기 흔적 없이 깨끗함. ",
           "required": true
         },
         {
@@ -335,7 +337,7 @@
       ],
       "summary": "본 음반은 골드마인(Goldmine) 표준 등급 기준에 의거하여, 알판(Media)·자켓(Sleeve) 모두 [Mint (M)]으로 판정되었습니다.",
       "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-12T05:12:15.650Z",
+      "updatedAt": "2026-08-18T02:32:07.825Z",
       "gradedDate": "2026-08-11",
       "graderName": "이도윤",
       "mediaGrade": "Mint (M)",
@@ -378,41 +380,36 @@
           "id": "g6rqx08ndyj",
           "title": "자켓 앞면",
           "image": "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1786868057698-fe739ee2.webp",
-          "body": "전반적인 보존 상태 양호. 인쇄 선명하며 변색·오염 흔적 없음.",
+          "body": "",
           "required": true
         },
         {
           "id": "8nk404wxff4",
           "title": "자켓 뒷면",
           "image": "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1786868067974-0a95d2bd.webp",
-          "body": "변색·습기 흔적 없이 깨끗함. 크레딧/트랙 정보 인쇄 양호.",
+          "body": "",
           "required": true
         },
         {
           "id": "pmwetny06s",
           "title": "모서리 마모",
-          "image": "",
           "body": "커버 앞면 3번에 마모 발견",
-          "required": false
-        },
-        {
-          "id": "x1gjxybo9m",
-          "title": "자켓 눌림·번짐·링웨어 현상",
-          "image": "",
-          "body": "뒷면에 작은 링웨어 발견",
-          "required": false
+          "required": false,
+          "images": [
+            "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1787020066600-7a6f324f.webp"
+          ]
         },
         {
           "id": "yp2aq3gmtkh",
           "title": "디스크 앞면(A면) 스크래치",
           "image": "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1786868105150-896d492a.webp",
-          "body": "디스트 A면 스크레치 2게 확인",
+          "body": "디스크 A면 스크래치 2개 확인",
           "required": true
         }
       ],
-      "summary": "본 음반은 경미한 흠·사용감 외 전반적 보존 상태가 양호하여 [Very Good Plus]로 판정되었습니다.",
+      "summary": "본 음반은 골드마인(Goldmine) 표준 등급 기준에 의거하여, 알판(Media)은 A면 경미한 스크래치가 확인되어 [Very Good Plus (VG+)], 자켓(Sleeve)은 모서리 마모가 확인되어 [Very Good Plus (VG+)]으로 판정되었습니다.",
       "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-16T08:21:40.913Z",
+      "updatedAt": "2026-08-18T02:57:00.736Z",
       "mediaGrade": "Very Good Plus (VG+)",
       "sleeveGrade": "Very Good Plus (VG+)",
       "sealed": false,
@@ -490,7 +487,7 @@
       ],
       "summary": "본 음반은 골드마인(Goldmine) 표준 등급 기준에 의거하여, 알판(Media)은 표면 스크래치가 확인되어 [Very Good (VG)], 자켓(Sleeve)은 눌림·잔기스가 있어 [Very Good Plus (VG+)]으로 판정되었습니다.",
       "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-16T12:06:50.927Z",
+      "updatedAt": "2026-08-16T13:23:02.717Z",
       "mediaGrade": "Very Good (VG)",
       "sleeveGrade": "Very Good Plus (VG+)",
       "sealed": false,
@@ -518,14 +515,14 @@
           "id": "a8vmnxf3vyh",
           "title": "자켓 앞면",
           "image": "/uploads/1786425685028-e9c39ed2.jpg",
-          "body": "전반적인 보존 상태 양호. 인쇄 선명하며 변색·오염 흔적 없음.",
+          "body": "전반적인 보존 상태 양호.",
           "required": true
         },
         {
           "id": "pjhmq2iupab",
           "title": "자켓 뒷면",
           "image": "/uploads/1786425692486-c510d01a.jpg",
-          "body": "변색·습기 흔적 없이 깨끗함. 크레딧/트랙 정보 인쇄 양호.",
+          "body": "변색·습기 흔적 없이 깨끗함. ",
           "required": true
         },
         {
@@ -545,7 +542,7 @@
       ],
       "summary": "본 음반은 골드마인(Goldmine) 표준 등급 기준에 의거하여, 가사지의 경미한 눌림 외 치명적인 손상이 없어, 알판(Media) [Mint (M)] · 자켓(Sleeve) [Near Mint (NM)]으로 판정되었습니다.",
       "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-16T12:40:40.743Z",
+      "updatedAt": "2026-08-18T02:33:02.725Z",
       "gradedDate": "2026-08-11",
       "graderName": "이도운",
       "mediaGrade": "Mint (M)",
@@ -578,14 +575,14 @@
           "id": "ubnqk4ff37j",
           "title": "자켓 앞면",
           "image": "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1786877627970-7f592bb4.webp",
-          "body": "전반적인 보존 상태 양호. 인쇄 선명하며 변색·오염 흔적 없음.",
+          "body": "",
           "required": true
         },
         {
           "id": "lc1v95j3pff",
           "title": "자켓 뒷면",
           "image": "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1786877637222-34667fff.webp",
-          "body": "변색·습기 흔적 없이 깨끗함. 크레딧/트랙 정보 인쇄 양호.",
+          "body": "",
           "required": true
         },
         {
@@ -605,12 +602,19 @@
             "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1786879054535-cacd7666.webp",
             "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1786879082191-8792bc58.webp"
           ]
+        },
+        {
+          "id": "krmi3qd81k",
+          "title": "디스크 앞·뒷면(A/B면) 스크래치",
+          "image": "",
+          "body": "육안상 사용 흔적이 없고 눈에 띄는 흠이 없는 거의 완벽한 표면.",
+          "required": false
         }
       ],
-      "summary": "본 음반은 골드마인(Goldmine) 표준 등급 기준에 의거하여, 알판(Media)은 사용 흔적이 없는 [Mint (M)], 자켓(Sleeve)은 까짐·오염·스크래치가 확인되어 [Good Plus (G+)]으로 판정되었습니다.",
+      "summary": "본 음반은 골드마인(Goldmine) 표준 등급 기준에 의거하여, 알판(Media)은 육안상 사용 흔적이 없는 [Near Mint (NM / M-)], 자켓(Sleeve)은 까짐·오염·스크래치가 확인되어 [Good Plus (G+)]으로 판정되었습니다.",
       "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-16T11:18:43.957Z",
-      "mediaGrade": "Mint (M)",
+      "updatedAt": "2026-08-18T02:57:00.453Z",
+      "mediaGrade": "Near Mint (NM / M-)",
       "sleeveGrade": "Good Plus (G+)",
       "sealed": false,
       "gradedDate": "2026-08-16",
