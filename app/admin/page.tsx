@@ -2,15 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { CheckItem, Record, ReportSection } from "@/lib/store";
-import {
-  GRADES,
-  matchGrade,
-  combinedSummary,
-  sectionDraftFor,
-  isGradeDraftBody,
-  DISC_DRAFT,
-  SLEEVE_INTRO_DRAFT,
-} from "@/lib/grade";
+import { GRADES, matchGrade, combinedSummary } from "@/lib/grade";
 
 const uid = () => Math.random().toString(36).slice(2);
 
@@ -117,42 +109,6 @@ function newSection(): ReportSection {
 
 function newCheck(): CheckItem {
   return { id: uid(), label: "", value: "O" };
-}
-
-// 섹션 본문이 '아직 손대지 않은 초안'인지 — 기본 템플릿 문구 + 등급별 초안 문구 + 빈칸
-const AUTO_BODY_SET = new Set<string>(
-  [
-    ...DEFAULT_SECTIONS_LP.map((s) => s.body),
-    ...DEFAULT_SECTIONS_CD.map((s) => s.body),
-    ...Object.values(DISC_DRAFT),
-    ...Object.values(SLEEVE_INTRO_DRAFT),
-  ]
-    .map((s) => s.trim())
-    .filter((s) => s.length > 0)
-);
-function isAutoBody(body: string): boolean {
-  const t = (body ?? "").trim();
-  return t === "" || AUTO_BODY_SET.has(t) || isGradeDraftBody(t);
-}
-
-// 상세 체크리스트에서 아직 없는 섹션을 현재 음반에 추가(기존 섹션·사진은 그대로 둠)
-function fillChecklist(d: Record): ReportSection[] {
-  const have = new Set(d.sections.map((s) => s.title.trim()));
-  const missing = sectionTemplate(d.format)
-    .filter((t) => !have.has(t.title.trim()))
-    .map((t) => ({ id: uid(), title: t.title, image: "", body: t.body, required: t.req }));
-  return [...d.sections, ...missing];
-}
-
-// 등급에 맞춰 섹션 초안 다시 채우기.
-// force=false: 손대지 않은(초안) 섹션만 교체 / force=true: 등급 대상 섹션 전부 교체
-function applyGradeDrafts(d: Record, force = false): ReportSection[] {
-  return d.sections.map((s) => {
-    const draft = sectionDraftFor(s.title, d.mediaGrade, d.sleeveGrade);
-    if (draft === null) return s; // 등급 자동초안 대상 아님(모서리·눌림 등)
-    if (!force && !isAutoBody(s.body)) return s; // 수동 편집본은 보호
-    return { ...s, body: draft };
-  });
 }
 
 export default function AdminPage() {
@@ -493,7 +449,6 @@ export default function AdminPage() {
                           // 등급을 바꾸면 총평도 실시간으로 그 등급에 맞게 다시 씀
                           const s = combinedSummary(v, draft.sleeveGrade, draft.sealed);
                           if (s) next.summary = s;
-                          next.sections = applyGradeDrafts(next);
                           setDraft(next);
                         }}
                         className="input"
@@ -510,7 +465,6 @@ export default function AdminPage() {
                           // 등급을 바꾸면 총평도 실시간으로 그 등급에 맞게 다시 씀
                           const s = combinedSummary(draft.mediaGrade, v, draft.sealed);
                           if (s) next.summary = s;
-                          next.sections = applyGradeDrafts(next);
                           setDraft(next);
                         }}
                         className="input"
@@ -657,34 +611,6 @@ export default function AdminPage() {
                         📷 사진 촬영 가이드
                       </button>
                       <button
-                        type="button"
-                        onClick={() => setDraft({ ...draft, sections: fillChecklist(draft) })}
-                        className="text-sm border border-neutral-600 rounded-lg px-3 py-1 hover:bg-neutral-800"
-                        title="이 음반에 상세 체크리스트에서 빠진 섹션을 추가합니다(기존 사진은 유지)"
-                      >
-                        상세 체크리스트 채우기
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          if (!matchGrade(draft.mediaGrade) && !matchGrade(draft.sleeveGrade)) {
-                            setMessage("먼저 알판/자켓 등급을 선택하세요.");
-                            return;
-                          }
-                          if (
-                            confirm(
-                              "디스크·자켓 앞뒤 섹션 설명을 현재 등급 기준 초안으로 다시 채웁니다. 직접 쓴 내용도 덮어쓸 수 있어요. 진행할까요?"
-                            )
-                          ) {
-                            setDraft({ ...draft, sections: applyGradeDrafts(draft, true) });
-                          }
-                        }}
-                        className="text-sm border border-neutral-600 rounded-lg px-3 py-1 hover:bg-neutral-800"
-                        title="현재 등급에 맞는 문구로 디스크·자켓 앞뒤 섹션을 다시 채웁니다"
-                      >
-                        등급에 맞춰 초안 채우기
-                      </button>
-                      <button
                         onClick={() => setDraft({ ...draft, sections: [...draft.sections, newSection()] })}
                         className="text-sm bg-neutral-800 rounded-lg px-3 py-1 hover:bg-neutral-700"
                       >
@@ -693,7 +619,7 @@ export default function AdminPage() {
                     </div>
                   </div>
                   <p className="mt-2 text-xs text-neutral-500">
-                    알판/자켓 등급을 고르면 디스크·자켓 앞뒤 섹션 설명이 등급에 맞는 초안으로 자동 채워집니다. (직접 쓴 내용은 유지)
+                    📷 사진 촬영 가이드를 참고해 부위별로 촬영하고, 각 섹션에 사진과 설명을 올리세요.
                   </p>
                   <div className="mt-4 space-y-4">
                     {draft.sections.map((s, i) => (
@@ -850,6 +776,42 @@ export default function AdminPage() {
                 <p className="mt-2 text-red-300">
                   ✗ 형광등을 정면으로 놓고 찍으면 스크래치가 다 숨어버립니다. (&ldquo;숨기려고 찍었네&rdquo; 소리 들어요) — 정반대로 가세요.
                 </p>
+
+                {/* 조명법 도식 */}
+                <svg viewBox="0 0 360 210" className="mt-4 w-full h-auto" role="img" aria-label="옆에서 낮게 비스듬히 빛을 비춰 흠집을 선으로 드러내는 촬영 도식">
+                  {/* 바닥 그림자 */}
+                  <ellipse cx="205" cy="182" rx="120" ry="10" fill="#000000" opacity="0.35" />
+                  {/* 판(레코드) */}
+                  <ellipse cx="205" cy="165" rx="118" ry="20" fill="#1f2937" stroke="#9ca3af" strokeWidth="1.5" />
+                  <ellipse cx="205" cy="165" rx="80" ry="13" fill="none" stroke="#374151" strokeWidth="1" />
+                  <ellipse cx="205" cy="165" rx="9" ry="2.6" fill="#0a0a0a" stroke="#9ca3af" strokeWidth="1" />
+                  {/* 빛 번짐 웨지 */}
+                  <path d="M92 158 L250 156 L250 168 L92 172 Z" fill="#fbbf24" opacity="0.10" />
+                  {/* 긁힘 글로우 + 밝은 선 */}
+                  <line x1="150" y1="162" x2="243" y2="158" stroke="#34d399" strokeWidth="8" opacity="0.25" strokeLinecap="round" />
+                  <line x1="150" y1="162" x2="243" y2="158" stroke="#6ee7b7" strokeWidth="2.5" strokeLinecap="round" />
+                  {/* 손전등 (왼쪽·낮게·비스듬히) */}
+                  <g transform="rotate(-10 70 150)">
+                    <rect x="26" y="142" width="46" height="16" rx="4" fill="#d4d4d4" />
+                    <rect x="70" y="139" width="12" height="22" rx="2" fill="#a3a3a3" />
+                  </g>
+                  {/* 빛줄기 (비스듬한 점선) */}
+                  <line x1="88" y1="150" x2="235" y2="159" stroke="#fbbf24" strokeWidth="1.5" strokeDasharray="5 4" opacity="0.85" />
+                  <line x1="88" y1="156" x2="165" y2="164" stroke="#fbbf24" strokeWidth="1.5" strokeDasharray="5 4" opacity="0.6" />
+                  {/* 카메라(휴대폰) 위에서 */}
+                  <g transform="rotate(12 205 70)">
+                    <rect x="186" y="40" width="34" height="58" rx="6" fill="#262626" stroke="#9ca3af" strokeWidth="1.3" />
+                    <circle cx="203" cy="54" r="4.5" fill="#111827" stroke="#e5e7eb" strokeWidth="1.2" />
+                    <rect x="196" y="86" width="14" height="4" rx="2" fill="#4b5563" />
+                  </g>
+                  {/* 시선(카메라 → 긁힘) */}
+                  <line x1="205" y1="100" x2="200" y2="158" stroke="#9ca3af" strokeWidth="1.2" strokeDasharray="4 4" opacity="0.7" />
+                  {/* 라벨 */}
+                  <text x="20" y="185" fill="#fbbf24" fontSize="12" fontWeight="700">손전등 — 옆·낮게</text>
+                  <text x="255" y="150" fill="#6ee7b7" fontSize="12" fontWeight="700">긁힘이 선으로 반짝!</text>
+                  <text x="243" y="35" fill="#e5e7eb" fontSize="12" fontWeight="700">📷 카메라</text>
+                  <text x="120" y="205" fill="#9ca3af" fontSize="11">판을 요리조리 기울이며 그 순간을 촬영</text>
+                </svg>
               </div>
 
               <div>
@@ -871,7 +833,7 @@ export default function AdminPage() {
               </div>
 
               <p className="text-xs text-neutral-500">
-                아래 섹션 목록이 이 체크리스트 순서대로 채워져 있습니다. 해당 부위를 위 방법으로 찍어 각 섹션에 올리세요.
+                각 부위를 위 방법으로 촬영해 섹션에 사진과 설명을 올리세요. 흠집은 전체 사진 + 바짝 당긴 사진 두 장으로.
               </p>
             </div>
           </div>

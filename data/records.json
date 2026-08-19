@@ -5,692 +5,140 @@
       "albumTitle": "고스트클럽 EP 2집 [Misfits]",
       "format": "LP",
       "coverImage": "/uploads/1786417078471-8030d7b5.jpg",
-      "releaseYear": "",
-      "label": "",
-      "catalogNo": "",
-      "country": "",
-      "checks": [
-        {
-          "id": "gsiatgr8ke4",
-          "label": "속지 여부",
-          "value": "O"
-        },
-        {
-          "id": "zewt8xhmymt",
-          "label": "가사지 여부",
-          "value": "O"
-        }
-      ],
-      "sections": [
-        {
-          "id": "s01ur8k5iug",
-          "title": "자켓 앞면",
-          "image": "",
-          "body": "전반적인 보존 상태 양호. 인쇄 선명하며 변색·오염 흔적 없음.",
-          "required": true
-        },
-        {
-          "id": "p3l1i8kevy",
-          "title": "자켓 뒷면",
-          "image": "",
-          "body": "변색·습기 흔적 없이 깨끗함. 크레딧/트랙 정보 인쇄 양호.",
-          "required": true
-        },
-        {
-          "id": "k27cgnwwwk",
-          "title": "모서리 마모",
-          "image": "",
-          "body": "네 모서리 상태 양호. (마모 있을 시 위치·크기 기재)",
-          "required": false
-        },
-        {
-          "id": "pwrgy7cxb4",
-          "title": "자켓 눌림·번짐·헤어라인",
-          "image": "",
-          "body": "표면 눌림(Crease)·잉크 번짐 없음.",
-          "required": false
-        },
-        {
-          "id": "v94otebyeze",
-          "title": "디스크 앞면(A면) 스크래치",
-          "image": "",
-          "body": "육안상 특이 스크래치 없음. (있을 시 위치·정도 기재)",
-          "required": true
-        },
-        {
-          "id": "2y2zcqwznbr",
-          "title": "디스크 뒷면(B면) 스크래치",
-          "image": "",
-          "body": "육안상 특이 스크래치 없음. 표면 광택 양호.",
-          "required": true
-        }
-      ],
-      "summary": "골드마인(Goldmine) 표준 등급 기준에 의거하여, 치명적인 손상이 없는 우수한 상태로 판정되어 최종 [ 등급 ] 부여되었습니다.",
-      "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-16T08:06:13.150Z",
       "mediaGrade": "",
       "sleeveGrade": "",
-      "sealed": false
+      "sealed": false,
+      "checks": [],
+      "sections": [],
+      "summary": "",
+      "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
+      "updatedAt": "2026-08-19T02:51:50.354Z"
     },
     {
       "code": "MINT/WX3U7J",
       "albumTitle": "김뜻돌 EP 1집 [꿈에서 걸려온 전화]",
       "format": "LP",
       "coverImage": "/uploads/1786417094197-fceff991.jpeg",
-      "releaseYear": "2026년",
-      "label": "Meaningful / MusicVerse Inc.",
-      "catalogNo": "KTDL 0001M",
-      "country": "한국",
-      "checks": [
-        {
-          "id": "im2tpxdcyra",
-          "label": "속지 여부",
-          "value": "O"
-        },
-        {
-          "id": "q205r6jg7y",
-          "label": "가사지 여부",
-          "value": "O"
-        }
-      ],
-      "sections": [
-        {
-          "id": "ub2vg1iatte",
-          "title": "자켓 앞면",
-          "body": "전반적인 보존 상태 양호. ",
-          "required": true,
-          "images": [
-            "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1786882315371-2a7c1b58.webp"
-          ]
-        },
-        {
-          "id": "ywam2va1uk",
-          "title": "자켓 뒷면",
-          "body": "변색·습기 흔적 없이 깨끗함",
-          "required": true,
-          "images": [
-            "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1786882332577-fd06d613.webp"
-          ]
-        },
-        {
-          "id": "vzeq7guhpqg",
-          "title": "모서리 마모",
-          "image": "",
-          "body": "네 모서리 상태 양호. (마모 있을 시 위치·크기 기재)",
-          "required": false
-        },
-        {
-          "id": "apbm3sbceit",
-          "title": "속지 터짐",
-          "body": "속지 터진부분 발견",
-          "required": false,
-          "images": [
-            "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1787020647289-9f3e4f33.webp"
-          ]
-        },
-        {
-          "id": "isbcihscka",
-          "title": "디스크 상태 ",
-          "image": "",
-          "body": "A면  B면 모두 스크레치 없음",
-          "required": false
-        }
-      ],
-      "summary": "본 음반은 골드마인(Goldmine) 표준 등급 기준에 의거하여, 알판(Media)은 [Mint (M)], 자켓(Sleeve)은 [Near Mint (NM / M-)]으로 판정되었습니다.",
-      "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-18T04:09:52.131Z",
-      "mediaGrade": "Mint (M)",
-      "sleeveGrade": "Near Mint (NM / M-)",
+      "mediaGrade": "",
+      "sleeveGrade": "",
       "sealed": false,
-      "gradedDate": "2026-08-16",
-      "graderName": "이도윤"
+      "checks": [],
+      "sections": [],
+      "summary": "",
+      "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
+      "updatedAt": "2026-08-19T02:51:50.611Z"
     },
     {
       "code": "MINT/6G3WRM",
       "albumTitle": "한로로 EP 1집 [이상비행]",
       "format": "LP",
       "coverImage": "/uploads/1786417112353-14cc9142.jpeg",
-      "releaseYear": "",
-      "label": "",
-      "catalogNo": "",
-      "country": "",
-      "checks": [
-        {
-          "id": "9yzvauz9i5s",
-          "label": "속지 여부",
-          "value": "O"
-        },
-        {
-          "id": "atapdqat7t",
-          "label": "가사지 여부",
-          "value": "O"
-        }
-      ],
-      "sections": [
-        {
-          "id": "od9k96623t",
-          "title": "자켓 앞면",
-          "image": "",
-          "body": "전반적인 보존 상태 양호. 인쇄 선명하며 변색·오염 흔적 없음.",
-          "required": true
-        },
-        {
-          "id": "ge3oop1xnt9",
-          "title": "자켓 뒷면",
-          "image": "",
-          "body": "변색·습기 흔적 없이 깨끗함. 크레딧/트랙 정보 인쇄 양호.",
-          "required": true
-        },
-        {
-          "id": "774iydp1566",
-          "title": "모서리 마모",
-          "image": "",
-          "body": "네 모서리 상태 양호. (마모 있을 시 위치·크기 기재)",
-          "required": false
-        },
-        {
-          "id": "2e5ot2e1tal",
-          "title": "자켓 눌림·번짐·헤어라인",
-          "image": "",
-          "body": "표면 눌림(Crease)·잉크 번짐 없음.",
-          "required": false
-        },
-        {
-          "id": "42qtclwlrsl",
-          "title": "디스크 앞면(A면) 스크래치",
-          "image": "",
-          "body": "육안상 특이 스크래치 없음. (있을 시 위치·정도 기재)",
-          "required": true
-        },
-        {
-          "id": "xgq6cx2q4xr",
-          "title": "디스크 뒷면(B면) 스크래치",
-          "image": "",
-          "body": "육안상 특이 스크래치 없음. 표면 광택 양호.",
-          "required": true
-        }
-      ],
-      "summary": "골드마인(Goldmine) 표준 등급 기준에 의거하여, 치명적인 손상이 없는 우수한 상태로 판정되어 최종 [ 등급 ] 부여되었습니다.",
-      "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-11T02:58:34.378Z",
       "mediaGrade": "",
       "sleeveGrade": "",
-      "sealed": false
+      "sealed": false,
+      "checks": [],
+      "sections": [],
+      "summary": "",
+      "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
+      "updatedAt": "2026-08-19T02:51:50.845Z"
     },
     {
       "code": "MINT/92SHPL",
       "albumTitle": "이센스 정규 3집 [저금통]",
       "format": "CD",
       "coverImage": "/uploads/1786417131308-95deac04.webp",
-      "releaseYear": "",
-      "label": "",
-      "catalogNo": "",
-      "country": "",
-      "checks": [
-        {
-          "id": "ycgye1rubao",
-          "label": "속지 여부",
-          "value": "O"
-        },
-        {
-          "id": "coim2sub5jo",
-          "label": "가사지 여부",
-          "value": "O"
-        }
-      ],
-      "sections": [
-        {
-          "id": "ypck2t63uq",
-          "title": "자켓 앞면",
-          "image": "",
-          "body": "전반적인 보존 상태 양호. 인쇄 선명하며 변색·오염 흔적 없음.",
-          "required": true
-        },
-        {
-          "id": "bnbzy75woru",
-          "title": "자켓 뒷면",
-          "image": "",
-          "body": "변색·습기 흔적 없이 깨끗함. 크레딧/트랙 정보 인쇄 양호.",
-          "required": true
-        },
-        {
-          "id": "f53ly88nftj",
-          "title": "모서리 마모",
-          "image": "",
-          "body": "네 모서리 상태 양호. (마모 있을 시 위치·크기 기재)",
-          "required": false
-        },
-        {
-          "id": "vkuzya93x2e",
-          "title": "자켓 눌림·번짐·헤어라인",
-          "image": "",
-          "body": "표면 눌림(Crease)·잉크 번짐 없음.",
-          "required": false
-        },
-        {
-          "id": "4fb9dyor00p",
-          "title": "디스크 앞면(A면) 스크래치",
-          "image": "",
-          "body": "육안상 특이 스크래치 없음. (있을 시 위치·정도 기재)",
-          "required": true
-        },
-        {
-          "id": "fmfgfk3ofi6",
-          "title": "디스크 뒷면(B면) 스크래치",
-          "image": "",
-          "body": "육안상 특이 스크래치 없음. 표면 광택 양호.",
-          "required": true
-        }
-      ],
-      "summary": "골드마인(Goldmine) 표준 등급 기준에 의거하여, 치명적인 손상이 없는 우수한 상태로 판정되어 최종 [ 등급 ] 부여되었습니다.",
-      "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-11T02:58:53.433Z",
       "mediaGrade": "",
       "sleeveGrade": "",
-      "sealed": false
+      "sealed": false,
+      "checks": [],
+      "sections": [],
+      "summary": "",
+      "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
+      "updatedAt": "2026-08-19T02:51:51.091Z"
     },
     {
       "code": "MINT/2R4BTZ",
       "albumTitle": "BIG Naughty (서동현) EP [코발트와 네이비 그 사이]",
       "format": "LP",
       "coverImage": "/uploads/1786417175192-d8ea0d3c.webp",
-      "releaseYear": "2026.04.30",
-      "label": "Kakao Entertainment / H1GHR MUSIC",
-      "catalogNo": "L200003562",
-      "country": "한국",
-      "checks": [
-        {
-          "id": "wpctt8uztqf",
-          "label": "싸인",
-          "value": "O"
-        }
-      ],
-      "sections": [
-        {
-          "id": "ydyhc6435s",
-          "title": "자켓 앞면",
-          "image": "/uploads/1786510164775-f9b184a7.jpg",
-          "body": "전반적인 보존 상태 양호. ",
-          "required": true
-        },
-        {
-          "id": "7pfhzuooh8j",
-          "title": "자켓 뒷면",
-          "image": "/uploads/1786510172626-50b366c9.jpg",
-          "body": "변색·습기 흔적 없이 깨끗함. ",
-          "required": true
-        },
-        {
-          "id": "2zy6ylwsk08",
-          "title": "모서리 마모",
-          "image": "",
-          "body": "네 모서리 상태 양호",
-          "required": false
-        },
-        {
-          "id": "uih1v71gcep",
-          "title": "자켓 눌림·번짐·헤어라인",
-          "image": "",
-          "body": "표면 눌림 잉크 번짐 없음.",
-          "required": false
-        }
-      ],
-      "summary": "본 음반은 골드마인(Goldmine) 표준 등급 기준에 의거하여, 알판(Media)·자켓(Sleeve) 모두 [Mint (M)]으로 판정되었습니다.",
+      "mediaGrade": "",
+      "sleeveGrade": "",
+      "sealed": false,
+      "checks": [],
+      "sections": [],
+      "summary": "",
       "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-18T02:32:07.825Z",
-      "gradedDate": "2026-08-11",
-      "graderName": "이도윤",
-      "mediaGrade": "Mint (M)",
-      "sleeveGrade": "Mint (M)",
-      "sealed": false
+      "updatedAt": "2026-08-19T02:51:51.328Z"
     },
     {
       "code": "MINT/8BZDS2",
       "albumTitle": "검정치마 정규 3집 Part.1 [TEAM BABY]",
       "format": "LP",
       "coverImage": "/uploads/1786417205540-a700cc23.webp",
-      "releaseYear": "2022년",
-      "label": "도기리치포에버 (Doggyrich Forever)",
-      "catalogNo": " YP0171",
-      "country": "한국",
-      "checks": [
-        {
-          "id": "m2xxset89y8",
-          "label": "속지 여부",
-          "value": "O"
-        },
-        {
-          "id": "qhn51c4azl",
-          "label": "가사지 여부",
-          "value": "O"
-        },
-        {
-          "id": "td5tlfk726",
-          "label": "포토카드 여부",
-          "value": "X"
-        },
-        {
-          "id": "4dyg1gyivsy",
-          "label": "포스터 여부",
-          "value": "O"
-        }
-      ],
-      "sections": [
-        {
-          "id": "g6rqx08ndyj",
-          "title": "자켓 앞면",
-          "image": "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1786868057698-fe739ee2.webp",
-          "body": "",
-          "required": true
-        },
-        {
-          "id": "8nk404wxff4",
-          "title": "자켓 뒷면",
-          "image": "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1786868067974-0a95d2bd.webp",
-          "body": "",
-          "required": true
-        },
-        {
-          "id": "pmwetny06s",
-          "title": "모서리 마모",
-          "body": "커버 앞면 3번에 마모 발견",
-          "required": false,
-          "images": [
-            "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1787020066600-7a6f324f.webp"
-          ]
-        },
-        {
-          "id": "ata6nfn9y9n",
-          "title": "자켓 링웨어 스크레치 현상",
-          "body": "뒷면에 작은 링웨어와 잦은 스크레치들 확인",
-          "required": false,
-          "images": [
-            "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1787025555508-30df495d.webp",
-            "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1787025573936-ba6fa4dd.webp",
-            "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1787025580410-8803361e.webp"
-          ]
-        },
-        {
-          "id": "yp2aq3gmtkh",
-          "title": "디스크 앞면(A면) 스크래치",
-          "image": "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1786868105150-896d492a.webp",
-          "body": "디스크 A면 스크래치 2개 확인",
-          "required": true
-        }
-      ],
-      "summary": "본 음반은 골드마인(Goldmine) 표준 등급 기준에 의거하여, 알판(Media)은 A면 경미한 스크래치가 확인되어 [Very Good Plus (VG+)], 자켓(Sleeve)은 모서리 마모가 확인되어 [Very Good Plus (VG+)]으로 판정되었습니다.",
-      "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-18T04:00:16.430Z",
-      "mediaGrade": "Very Good Plus (VG+)",
-      "sleeveGrade": "Very Good Plus (VG+)",
+      "mediaGrade": "",
+      "sleeveGrade": "",
       "sealed": false,
-      "gradedDate": "2026-08-16",
-      "graderName": "이도윤"
+      "checks": [],
+      "sections": [],
+      "summary": "",
+      "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
+      "updatedAt": "2026-08-19T02:51:51.577Z"
     },
     {
       "code": "MINT/R7DHF8",
       "albumTitle": "오왼 정규 1집 [P.O.E.M.] (Remastered)",
       "format": "LP",
       "coverImage": "/uploads/1786417235555-fcf6e8c2.webp",
-      "releaseYear": "2024년",
-      "label": "MKIT RAIN",
-      "catalogNo": "",
-      "country": "한국",
-      "checks": [
-        {
-          "id": "k8ux7gug9k",
-          "label": "속지 여부",
-          "value": "O"
-        },
-        {
-          "id": "4f1l6lvplsf",
-          "label": "가사지 여부",
-          "value": "O"
-        }
-      ],
-      "sections": [
-        {
-          "id": "gr3ny9visvd",
-          "title": "자켓 앞면",
-          "body": "전반적인 보존 상태 양호. 인쇄 선명하며 변색·오염 흔적 없음.",
-          "required": true,
-          "images": [
-            "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1786881346636-3dbb15c5.webp"
-          ]
-        },
-        {
-          "id": "muxk8x0pxr",
-          "title": "자켓 뒷면",
-          "body": "변색·습기 흔적 없이 깨끗함. 크레딧/트랙 정보 인쇄 양호.",
-          "required": true,
-          "images": [
-            "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1786881363606-1fd15282.webp"
-          ]
-        },
-        {
-          "id": "dvirc9qtj6c",
-          "title": "모서리 마모",
-          "image": "",
-          "body": "네 모서리 상태 양호",
-          "required": false
-        },
-        {
-          "id": "vmlncnm7ojs",
-          "title": "자켓 눌림·스크레치",
-          "body": "자켓 눌림 스크레치 다수 확인 ",
-          "required": false,
-          "images": [
-            "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1786881495399-69915b0e.webp",
-            "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1786881498300-8450f356.webp",
-            "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1786881500990-fe192fe3.webp",
-            "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1786881528553-cd1a8949.webp"
-          ]
-        },
-        {
-          "id": "y95u5uz7es",
-          "title": "디스크 뒷면(B면) 스크래치",
-          "body": " 스크래치 다수 확인",
-          "required": true,
-          "images": [
-            "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1786881551766-235dbf19.webp"
-          ]
-        }
-      ],
-      "summary": "본 음반은 골드마인(Goldmine) 표준 등급 기준에 의거하여, 알판(Media)은 표면 스크래치가 확인되어 [Very Good (VG)], 자켓(Sleeve)은 눌림·잔기스가 있어 [Very Good Plus (VG+)]으로 판정되었습니다.",
-      "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-16T13:23:02.717Z",
-      "mediaGrade": "Very Good (VG)",
-      "sleeveGrade": "Very Good Plus (VG+)",
+      "mediaGrade": "",
+      "sleeveGrade": "",
       "sealed": false,
-      "gradedDate": "2026-08-16",
-      "graderName": "이도윤"
+      "checks": [],
+      "sections": [],
+      "summary": "",
+      "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
+      "updatedAt": "2026-08-19T02:51:51.811Z"
     },
     {
       "code": "MINT/WUR8Q5",
       "albumTitle": "뱃사공 정규 2집 [탕아]",
       "format": "LP",
       "coverImage": "/uploads/1786417252087-e50ab1a7.webp",
-      "releaseYear": "2021.12.03",
-      "label": "SUPERJAM Records",
-      "catalogNo": "",
-      "country": "한국",
-      "checks": [
-        {
-          "id": "ltwtgnim6o",
-          "label": "가사지 여부",
-          "value": "O"
-        }
-      ],
-      "sections": [
-        {
-          "id": "a8vmnxf3vyh",
-          "title": "자켓 앞면",
-          "image": "/uploads/1786425685028-e9c39ed2.jpg",
-          "body": "전반적인 보존 상태 양호.",
-          "required": true
-        },
-        {
-          "id": "pjhmq2iupab",
-          "title": "자켓 뒷면",
-          "image": "/uploads/1786425692486-c510d01a.jpg",
-          "body": "변색·습기 흔적 없이 깨끗함. ",
-          "required": true
-        },
-        {
-          "id": "o9j1ixti2r",
-          "title": "모서리 마모",
-          "image": "",
-          "body": "네 모서리 상태 양호. ",
-          "required": false
-        },
-        {
-          "id": "w63sfm4wgd",
-          "title": "가사지 구겨짐",
-          "image": "/uploads/1786425968501-96d224c6.jpg",
-          "body": "가사지 4번쨰 부분  눌림 발견",
-          "required": false
-        }
-      ],
-      "summary": "본 음반은 골드마인(Goldmine) 표준 등급 기준에 의거하여, 가사지의 경미한 눌림 외 치명적인 손상이 없어, 알판(Media) [Mint (M)] · 자켓(Sleeve) [Near Mint (NM)]으로 판정되었습니다.",
+      "mediaGrade": "",
+      "sleeveGrade": "",
+      "sealed": false,
+      "checks": [],
+      "sections": [],
+      "summary": "",
       "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-18T02:33:02.725Z",
-      "gradedDate": "2026-08-11",
-      "graderName": "이도운",
-      "mediaGrade": "Mint (M)",
-      "sleeveGrade": "Near Mint (NM)",
-      "sealed": false
+      "updatedAt": "2026-08-19T02:51:52.064Z"
     },
     {
       "code": "MINT/ZXC2F5",
       "albumTitle": "염따 정규 4집 [살아숨셔 4]",
       "format": "LP",
       "coverImage": "/uploads/1786416885822-3c1b3b32.webp",
-      "releaseYear": "2025년",
-      "label": "Daytona Entertainment",
-      "catalogNo": "",
-      "country": "한국",
-      "checks": [
-        {
-          "id": "g1lspl81djj",
-          "label": "속지 여부",
-          "value": "O"
-        },
-        {
-          "id": "lsier6yoyyl",
-          "label": "가사지 여부",
-          "value": "O"
-        }
-      ],
-      "sections": [
-        {
-          "id": "ubnqk4ff37j",
-          "title": "자켓 앞면",
-          "image": "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1786877627970-7f592bb4.webp",
-          "body": "",
-          "required": true
-        },
-        {
-          "id": "lc1v95j3pff",
-          "title": "자켓 뒷면",
-          "image": "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1786877637222-34667fff.webp",
-          "body": "",
-          "required": true
-        },
-        {
-          "id": "s7q6mh32ntd",
-          "title": "모서리 마모 여부",
-          "image": "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1786877664453-5568c2e2.webp",
-          "body": "1번 모서리 상태 마모 확인",
-          "required": false
-        },
-        {
-          "id": "oc9bub5bhab",
-          "title": "자켓 까짐 오염 스크레치 여부",
-          "body": "자켓 까짐 오염 스크레치 부분 발견",
-          "required": false,
-          "images": [
-            "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1786877699494-54f712f7.webp",
-            "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1786879054535-cacd7666.webp",
-            "https://eqhmysd0jhm4xjjo.public.blob.vercel-storage.com/uploads/1786879082191-8792bc58.webp"
-          ]
-        },
-        {
-          "id": "krmi3qd81k",
-          "title": "디스크 앞·뒷면(A/B면) 스크래치",
-          "image": "",
-          "body": "육안상 사용 흔적이 없고 눈에 띄는 흠이 없는 거의 완벽한 표면.",
-          "required": false
-        }
-      ],
-      "summary": "본 음반은 골드마인(Goldmine) 표준 등급 기준에 의거하여, 알판(Media)은 육안상 사용 흔적이 없는 [Near Mint (NM / M-)], 자켓(Sleeve)은 까짐·오염·스크래치가 확인되어 [Good Plus (G+)]으로 판정되었습니다.",
-      "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-18T02:57:00.453Z",
-      "mediaGrade": "Near Mint (NM / M-)",
-      "sleeveGrade": "Good Plus (G+)",
+      "mediaGrade": "",
+      "sleeveGrade": "",
       "sealed": false,
-      "gradedDate": "2026-08-16",
-      "graderName": "이도윤"
+      "checks": [],
+      "sections": [],
+      "summary": "",
+      "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
+      "updatedAt": "2026-08-19T02:51:52.291Z"
     },
     {
       "code": "MINT/26UPBX",
       "albumTitle": "뉴진스 일본 싱글 1집 [Supernatural]",
       "format": "CD",
       "coverImage": "/uploads/1786507286065-6bc0cb67.png",
-      "mediaGrade": "Mint (M)",
-      "sleeveGrade": "Mint (M)",
+      "mediaGrade": "",
+      "sleeveGrade": "",
       "sealed": false,
-      "checks": [
-        {
-          "id": "c8rjg0y31dl",
-          "label": "가사지 여부",
-          "value": "O"
-        }
-      ],
-      "sections": [
-        {
-          "id": "jlfww5a2w5",
-          "title": "자켓(부클릿) 앞면",
-          "image": "/uploads/1786507619921-4c85c3ac.jpg",
-          "body": "전반적인 보존 상태 양호. 인쇄 선명하며 변색·오염 흔적 없음.",
-          "required": true
-        },
-        {
-          "id": "r5rihxdarm",
-          "title": "자켓 뒷면(인레이)",
-          "image": "/uploads/1786507631677-bce7ed43.jpg",
-          "body": "변색·손상 없이 양호.",
-          "required": true
-        },
-        {
-          "id": "2hao668xkv",
-          "title": "디스크 재생면(하판) 스크래치",
-          "image": "/uploads/1786509613368-e2d37332.jpg",
-          "body": "특이 스크래치 없음. ",
-          "required": true
-        },
-        {
-          "id": "tv5biqxedei",
-          "title": "디스크 레이블면(상판)",
-          "image": "",
-          "body": "인쇄 선명하며 손상·벗겨짐 없음.",
-          "required": false
-        },
-        {
-          "id": "3uzecarwvd3",
-          "title": "부클릿 내부 상태",
-          "image": "",
-          "body": "구겨짐·변색·필기 없이 깨끗함.",
-          "required": false
-        }
-      ],
-      "summary": "본 음반은 사용 흔적이 전혀 확인되지 않는 신품 수준으로, 골드마인 표준상 최상급 [Mint]으로 판정되었습니다.",
+      "checks": [],
+      "sections": [],
+      "summary": "",
       "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-16T12:40:41.780Z",
-      "graderName": "이도윤",
-      "releaseYear": "2024",
-      "label": "YG PLUS / Kakao Entertainment",
-      "country": "일본",
-      "gradedDate": "2026-08-12"
+      "updatedAt": "2026-08-19T02:51:52.533Z"
     }
   ]
 }
