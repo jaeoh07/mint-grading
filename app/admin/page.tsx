@@ -832,8 +832,43 @@ export default function AdminPage() {
                 </ul>
               </div>
 
+              <div>
+                <h3 className="font-bold text-neutral-200 mb-2">LP(엘피) 찍을 것</h3>
+                <ol className="list-decimal pl-5 space-y-1 text-neutral-300">
+                  <li>자켓 앞</li>
+                  <li>자켓 뒤</li>
+                  <li>옆면 (글자 닳았는지)</li>
+                  <li>네 모서리 (찍히거나 터졌는지)</li>
+                  <li>자켓에 동그란 눌린 자국(음반 자국) 있는지 — <span className="text-amber-300">옆에서 빛 비춰서</span></li>
+                  <li>딸려오는 것들: 속비닐·속지·가사지·포스터·띠지 — 있는 대로 하나씩</li>
+                  <li><span className="text-emerald-300 font-semibold">판 A면 전체 — 옆에서 빛 비춰서</span> (스크래치 보이게)</li>
+                  <li><span className="text-emerald-300 font-semibold">판 B면 전체 — 똑같이</span></li>
+                  <li>판 가운데 라벨 — 바늘 자국·스티커·낙서·곰팡이</li>
+                  <li>라벨 옆 매끈한 부분에 새겨진 작은 글자/숫자 (진짜 원판인지·몇 년도 판인지 확인용)</li>
+                  <li>판이 휘었는지 — 눈높이로 수평 들고 옆에서</li>
+                  <li>찾은 흠집마다 바짝 당겨 한 장씩</li>
+                </ol>
+              </div>
+
+              <div>
+                <h3 className="font-bold text-neutral-200 mb-2">CD(시디) 찍을 것</h3>
+                <ol className="list-decimal pl-5 space-y-1 text-neutral-300">
+                  <li>케이스 앞·뒤·옆</li>
+                  <li>케이스 깨짐·경첩 부러짐</li>
+                  <li>책자(부클릿) 앞·뒤</li>
+                  <li>책자 들뜸 — 옆에서 각도 줘서 뜬 정도 보이게</li>
+                  <li>책자 속지 펼쳐서 — 낙서·스티커·색 바램</li>
+                  <li>뒤 종이(트레이 카드)</li>
+                  <li><span className="text-emerald-300 font-semibold">디스크 반짝이는 아랫면 — 옆에서 빛 비춰</span> 스크래치·지문</li>
+                  <li>디스크 윗면(그림 있는 쪽) — 인쇄 벗겨짐·변색</li>
+                  <li><span className="text-emerald-300 font-semibold">가운데 구멍 주변 금 갔는지</span> (금 가면 재생 불가 — 제일 중요)</li>
+                  <li>딸려오는 것: 띠지·스티커·포토카드·초회 특전 있는지</li>
+                  <li>흠집마다 바짝 한 장씩</li>
+                </ol>
+              </div>
+
               <p className="text-xs text-neutral-500">
-                각 부위를 위 방법으로 촬영해 섹션에 사진과 설명을 올리세요. 흠집은 전체 사진 + 바짝 당긴 사진 두 장으로.
+                각 부위를 위 방법으로 촬영해 섹션에 사진과 설명을 올리세요. 흠집은 전체 사진 + 바짝 당긴 사진 두 장으로. <span className="text-emerald-400">초록색 항목</span>이 등급을 가르는 결정타입니다.
               </p>
             </div>
           </div>
