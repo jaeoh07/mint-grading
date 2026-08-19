@@ -38,20 +38,32 @@ function generateCode(existing: Record[]): string {
 type SectionTmpl = { title: string; body: string; req: boolean };
 
 const DEFAULT_SECTIONS_LP: SectionTmpl[] = [
-  { title: "자켓 앞면", body: "전반적인 보존 상태 양호. 인쇄 선명하며 변색·오염 흔적 없음.", req: true },
-  { title: "자켓 뒷면", body: "변색·습기 흔적 없이 깨끗함. 크레딧/트랙 정보 인쇄 양호.", req: true },
-  { title: "모서리 마모", body: "네 모서리 상태 양호. (마모 있을 시 위치·크기 기재)", req: false },
-  { title: "자켓 눌림·번짐·헤어라인", body: "표면 눌림(Crease)·잉크 번짐 없음.", req: false },
-  { title: "디스크 앞면(A면) 스크래치", body: "육안상 특이 스크래치 없음. (있을 시 위치·정도 기재)", req: true },
-  { title: "디스크 뒷면(B면) 스크래치", body: "육안상 특이 스크래치 없음. 표면 광택 양호.", req: true },
+  { title: "자켓 앞면", body: "자켓 앞면 전체. 인쇄·변색·오염 확인.", req: true },
+  { title: "자켓 뒷면", body: "자켓 뒷면 전체. 크레딧·변색·습기 흔적 확인.", req: true },
+  { title: "자켓 옆면(Spine)", body: "옆면 글자 마모·바램 확인.", req: false },
+  { title: "네 모서리", body: "네 모서리 찍힘·터짐 확인. (손상 시 위치 기재)", req: false },
+  { title: "자켓 링웨어(음반 눌린 자국)", body: "옆에서 빛을 비스듬히 비춰 동그란 눌림(링웨어) 확인.", req: false },
+  { title: "구성품 (속비닐·속지·가사지·포스터·띠지)", body: "딸려오는 구성품을 하나씩. 있는 것만 촬영.", req: false },
+  { title: "판 A면 표면", body: "옆에서 빛을 낮게 비스듬히 비춰 A면 전체. 스크래치가 선으로 드러나게. (최고 등급 판가름)", req: true },
+  { title: "판 B면 표면", body: "옆에서 빛을 낮게 비스듬히 비춰 B면 전체. 동일한 방식으로.", req: true },
+  { title: "라벨(가운데)", body: "바늘 자국·스티커·낙서·곰팡이 확인.", req: false },
+  { title: "러너웃/매트릭스 각인", body: "라벨 옆 매끈한 부분의 각인 글자·숫자. (원판·발매연도 확인용)", req: false },
+  { title: "휨(워프) 확인", body: "눈높이에서 수평으로 들고 옆에서. 휨 여부 확인.", req: false },
+  { title: "하자 클로즈업", body: "찾은 흠집마다 전체 사진 + 바짝 당긴 사진 2장씩.", req: false },
 ];
 
 const DEFAULT_SECTIONS_CD: SectionTmpl[] = [
-  { title: "자켓(부클릿) 앞면", body: "전반적인 보존 상태 양호. 인쇄 선명하며 변색·오염 흔적 없음.", req: true },
-  { title: "자켓 뒷면(인레이)", body: "변색·손상 없이 양호.", req: true },
-  { title: "디스크 재생면(하판) 스크래치", body: "육안상 특이 스크래치 없음. (있을 시 위치·정도 기재)", req: true },
-  { title: "디스크 레이블면(상판)", body: "인쇄 선명하며 손상·벗겨짐 없음.", req: false },
-  { title: "부클릿 내부 상태", body: "구겨짐·변색·필기 없이 깨끗함.", req: false },
+  { title: "케이스 앞·뒤·옆", body: "케이스 앞·뒤·옆 전체.", req: true },
+  { title: "케이스 깨짐·경첩", body: "케이스 깨짐·경첩(힌지) 부러짐 확인.", req: false },
+  { title: "부클릿(책자) 앞·뒤", body: "책자 앞·뒤 인쇄·변색 확인.", req: true },
+  { title: "부클릿 들뜸", body: "옆에서 각도를 줘 책자 들뜬 정도가 보이게.", req: false },
+  { title: "부클릿 속지", body: "펼쳐서 낙서·스티커·색바램 확인.", req: false },
+  { title: "트레이 카드(뒤 종이)", body: "뒤 종이(트레이 카드) 확인.", req: false },
+  { title: "디스크 재생면(아랫면)", body: "옆에서 빛을 비춰 스크래치·지문 확인. (최고 등급 판가름)", req: true },
+  { title: "디스크 윗면(인쇄면)", body: "윗면 인쇄 벗겨짐·변색 확인.", req: false },
+  { title: "가운데 구멍 주변(허브)", body: "구멍 주변 금(크랙) 확인. 금 가면 재생 불가 — 가장 중요.", req: true },
+  { title: "구성품 (띠지·스티커·포토카드·특전)", body: "딸려오는 구성품. 있는 것만 촬영.", req: false },
+  { title: "하자 클로즈업", body: "찾은 흠집마다 바짝 당긴 사진.", req: false },
 ];
 
 // 포맷에 맞는 기본 섹션 템플릿 (CD면 CD용, 그 외는 LP/바이닐용)
@@ -145,6 +157,7 @@ export default function AdminPage() {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
   const [showGuide, setShowGuide] = useState(false);
+  const [showPhotoGuide, setShowPhotoGuide] = useState(false);
 
   // 로그인 상태 확인
   useEffect(() => {
@@ -628,6 +641,14 @@ export default function AdminPage() {
                     <div className="flex items-center gap-2">
                       <button
                         type="button"
+                        onClick={() => setShowPhotoGuide(true)}
+                        className="text-sm border border-emerald-600/60 text-emerald-300 rounded-lg px-3 py-1 hover:bg-emerald-900/30"
+                        title="흠집이 드러나게 찍는 방법과 촬영 체크리스트"
+                      >
+                        📷 사진 촬영 가이드
+                      </button>
+                      <button
+                        type="button"
                         onClick={() => {
                           if (!matchGrade(draft.mediaGrade) && !matchGrade(draft.sleeveGrade)) {
                             setMessage("먼저 알판/자켓 등급을 선택하세요.");
@@ -789,6 +810,56 @@ export default function AdminPage() {
           </div>
         </div>
       </div>
+
+      {/* 사진 촬영 가이드 모달 */}
+      {showPhotoGuide && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-6 z-50" onClick={() => setShowPhotoGuide(false)}>
+          <div
+            className="bg-neutral-950 border border-neutral-700 rounded-2xl max-w-lg w-full max-h-[85vh] overflow-y-auto p-6"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between sticky top-0 bg-neutral-950 pb-3">
+              <h2 className="text-lg font-bold">📷 사진 촬영 가이드</h2>
+              <button onClick={() => setShowPhotoGuide(false)} className="text-neutral-400 hover:text-white text-2xl leading-none">×</button>
+            </div>
+
+            <div className="space-y-5 text-sm leading-relaxed">
+              <div className="rounded-xl border border-emerald-700/50 bg-emerald-900/15 p-4">
+                <h3 className="font-bold text-emerald-300 mb-2">핵심 조명법 — 흠집을 드러내라</h3>
+                <p className="text-neutral-300">
+                  방을 살짝 어둡게 하고, <b className="text-white">스탠드나 휴대폰 손전등을 판 옆에서 낮게 비스듬히</b> 비춥니다.
+                  판을 요리조리 기울이면 흠집이 <b className="text-white">반짝하고 선으로</b> 드러나요 — 그 순간을 찍습니다.
+                </p>
+                <p className="mt-2 text-red-300">
+                  ✗ 형광등을 정면으로 놓고 찍으면 스크래치가 다 숨어버립니다. (&ldquo;숨기려고 찍었네&rdquo; 소리 들어요) — 정반대로 가세요.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-bold text-neutral-200 mb-2">기본 규칙</h3>
+                <ul className="list-disc pl-5 space-y-1 text-neutral-300">
+                  <li>흐리게 찍지 말 것 — 또렷하게</li>
+                  <li>흠집 하나 찾으면 두 장: <b className="text-white">어디 있는지 보이는 전체 사진 + 바짝 당긴 사진</b></li>
+                  <li>매번 비슷한 각도·거리로 (제각각이면 비교가 안 됩니다)</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-bold text-neutral-200 mb-2">등급을 가르는 결정타</h3>
+                <ul className="space-y-2 text-neutral-300">
+                  <li><span className="text-emerald-300 font-semibold">옆에서 빛 준 판/디스크 표면</span> → 최고 등급이냐 아니냐를 가름</li>
+                  <li><span className="text-emerald-300 font-semibold">가운데 각인·구멍 주변 금·디스크 변색</span> → 진짜 원판인지, 재생 되는지</li>
+                  <li><span className="text-emerald-300 font-semibold">자켓 동그란 자국·모서리·책자 들뜸</span> → 겉(자켓) 등급</li>
+                </ul>
+              </div>
+
+              <p className="text-xs text-neutral-500">
+                아래 섹션 목록이 이 체크리스트 순서대로 채워져 있습니다. 해당 부위를 위 방법으로 찍어 각 섹션에 올리세요.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* 등급표 모달 */}
       {showGuide && (
