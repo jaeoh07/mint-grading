@@ -9,10 +9,95 @@
       "sleeveGrade": "",
       "sealed": false,
       "checks": [],
-      "sections": [],
+      "sections": [
+        {
+          "id": "5wp79nw5moy",
+          "title": "자켓 앞면",
+          "image": "",
+          "body": "자켓 앞면 전체. 인쇄·변색·오염 확인.",
+          "required": true
+        },
+        {
+          "id": "2ogwc8nyb84",
+          "title": "자켓 뒷면",
+          "image": "",
+          "body": "자켓 뒷면 전체. 크레딧·변색·습기 흔적 확인.",
+          "required": true
+        },
+        {
+          "id": "gfr21h35zqr",
+          "title": "자켓 옆면(Spine)",
+          "image": "",
+          "body": "옆면 글자 마모·바램 확인.",
+          "required": false
+        },
+        {
+          "id": "zq56ih8btp",
+          "title": "네 모서리",
+          "image": "",
+          "body": "네 모서리 찍힘·터짐 확인. (손상 시 위치 기재)",
+          "required": false
+        },
+        {
+          "id": "lwh3qzzuq1",
+          "title": "자켓 링웨어(음반 눌린 자국)",
+          "image": "",
+          "body": "옆에서 빛을 비스듬히 비춰 동그란 눌림(링웨어) 확인.",
+          "required": false
+        },
+        {
+          "id": "4jpaccn0ot6",
+          "title": "구성품 (속비닐·속지·가사지·포스터·띠지)",
+          "image": "",
+          "body": "딸려오는 구성품을 하나씩. 있는 것만 촬영.",
+          "required": false
+        },
+        {
+          "id": "3mg7eql94ej",
+          "title": "판 A면 표면",
+          "image": "",
+          "body": "옆에서 빛을 낮게 비스듬히 비춰 A면 전체. 스크래치가 선으로 드러나게. (최고 등급 판가름)",
+          "required": true
+        },
+        {
+          "id": "du4plqmscea",
+          "title": "판 B면 표면",
+          "image": "",
+          "body": "옆에서 빛을 낮게 비스듬히 비춰 B면 전체. 동일한 방식으로.",
+          "required": true
+        },
+        {
+          "id": "5l4p9qa83ts",
+          "title": "라벨(가운데)",
+          "image": "",
+          "body": "바늘 자국·스티커·낙서·곰팡이 확인.",
+          "required": false
+        },
+        {
+          "id": "mc8dc9fiaui",
+          "title": "러너웃/매트릭스 각인",
+          "image": "",
+          "body": "라벨 옆 매끈한 부분의 각인 글자·숫자. (원판·발매연도 확인용)",
+          "required": false
+        },
+        {
+          "id": "d7tchok9uz",
+          "title": "휨(워프) 확인",
+          "image": "",
+          "body": "눈높이에서 수평으로 들고 옆에서. 휨 여부 확인.",
+          "required": false
+        },
+        {
+          "id": "4j1kwiozbex",
+          "title": "하자 클로즈업",
+          "image": "",
+          "body": "찾은 흠집마다 전체 사진 + 바짝 당긴 사진 2장씩.",
+          "required": false
+        }
+      ],
       "summary": "",
       "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-19T02:51:50.354Z"
+      "updatedAt": "2026-08-19T04:25:09.133Z"
     },
     {
       "code": "MINT/WX3U7J",
@@ -23,10 +108,95 @@
       "sleeveGrade": "",
       "sealed": false,
       "checks": [],
-      "sections": [],
+      "sections": [
+        {
+          "id": "rkjkrvvysin",
+          "title": "자켓 앞면",
+          "image": "",
+          "body": "자켓 앞면 전체. 인쇄·변색·오염 확인.",
+          "required": true
+        },
+        {
+          "id": "z767hhicm7",
+          "title": "자켓 뒷면",
+          "image": "",
+          "body": "자켓 뒷면 전체. 크레딧·변색·습기 흔적 확인.",
+          "required": true
+        },
+        {
+          "id": "q1g1zwe1qi",
+          "title": "자켓 옆면(Spine)",
+          "image": "",
+          "body": "옆면 글자 마모·바램 확인.",
+          "required": false
+        },
+        {
+          "id": "lvydquc73pp",
+          "title": "네 모서리",
+          "image": "",
+          "body": "네 모서리 찍힘·터짐 확인. (손상 시 위치 기재)",
+          "required": false
+        },
+        {
+          "id": "z2u5ap4z2ba",
+          "title": "자켓 링웨어(음반 눌린 자국)",
+          "image": "",
+          "body": "옆에서 빛을 비스듬히 비춰 동그란 눌림(링웨어) 확인.",
+          "required": false
+        },
+        {
+          "id": "k7tv2oaxbu",
+          "title": "구성품 (속비닐·속지·가사지·포스터·띠지)",
+          "image": "",
+          "body": "딸려오는 구성품을 하나씩. 있는 것만 촬영.",
+          "required": false
+        },
+        {
+          "id": "snyz7kfcgr",
+          "title": "판 A면 표면",
+          "image": "",
+          "body": "옆에서 빛을 낮게 비스듬히 비춰 A면 전체. 스크래치가 선으로 드러나게. (최고 등급 판가름)",
+          "required": true
+        },
+        {
+          "id": "sodlro1ttka",
+          "title": "판 B면 표면",
+          "image": "",
+          "body": "옆에서 빛을 낮게 비스듬히 비춰 B면 전체. 동일한 방식으로.",
+          "required": true
+        },
+        {
+          "id": "i5c1wd2sjdj",
+          "title": "라벨(가운데)",
+          "image": "",
+          "body": "바늘 자국·스티커·낙서·곰팡이 확인.",
+          "required": false
+        },
+        {
+          "id": "f9m30k7qhv5",
+          "title": "러너웃/매트릭스 각인",
+          "image": "",
+          "body": "라벨 옆 매끈한 부분의 각인 글자·숫자. (원판·발매연도 확인용)",
+          "required": false
+        },
+        {
+          "id": "mvg4pw93pk",
+          "title": "휨(워프) 확인",
+          "image": "",
+          "body": "눈높이에서 수평으로 들고 옆에서. 휨 여부 확인.",
+          "required": false
+        },
+        {
+          "id": "ciiygr1eucl",
+          "title": "하자 클로즈업",
+          "image": "",
+          "body": "찾은 흠집마다 전체 사진 + 바짝 당긴 사진 2장씩.",
+          "required": false
+        }
+      ],
       "summary": "",
       "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-19T02:51:50.611Z"
+      "updatedAt": "2026-08-19T04:25:09.548Z"
     },
     {
       "code": "MINT/6G3WRM",
@@ -37,10 +207,95 @@
       "sleeveGrade": "",
       "sealed": false,
       "checks": [],
-      "sections": [],
+      "sections": [
+        {
+          "id": "gmlaornzgw",
+          "title": "자켓 앞면",
+          "image": "",
+          "body": "자켓 앞면 전체. 인쇄·변색·오염 확인.",
+          "required": true
+        },
+        {
+          "id": "buogzhfuleh",
+          "title": "자켓 뒷면",
+          "image": "",
+          "body": "자켓 뒷면 전체. 크레딧·변색·습기 흔적 확인.",
+          "required": true
+        },
+        {
+          "id": "vcbwb5t6jho",
+          "title": "자켓 옆면(Spine)",
+          "image": "",
+          "body": "옆면 글자 마모·바램 확인.",
+          "required": false
+        },
+        {
+          "id": "rszjflfqax",
+          "title": "네 모서리",
+          "image": "",
+          "body": "네 모서리 찍힘·터짐 확인. (손상 시 위치 기재)",
+          "required": false
+        },
+        {
+          "id": "xnbaeh7pv28",
+          "title": "자켓 링웨어(음반 눌린 자국)",
+          "image": "",
+          "body": "옆에서 빛을 비스듬히 비춰 동그란 눌림(링웨어) 확인.",
+          "required": false
+        },
+        {
+          "id": "vk6axr80a3",
+          "title": "구성품 (속비닐·속지·가사지·포스터·띠지)",
+          "image": "",
+          "body": "딸려오는 구성품을 하나씩. 있는 것만 촬영.",
+          "required": false
+        },
+        {
+          "id": "9b4nxfj7z95",
+          "title": "판 A면 표면",
+          "image": "",
+          "body": "옆에서 빛을 낮게 비스듬히 비춰 A면 전체. 스크래치가 선으로 드러나게. (최고 등급 판가름)",
+          "required": true
+        },
+        {
+          "id": "01vyvwpieqye",
+          "title": "판 B면 표면",
+          "image": "",
+          "body": "옆에서 빛을 낮게 비스듬히 비춰 B면 전체. 동일한 방식으로.",
+          "required": true
+        },
+        {
+          "id": "mm9875jprmh",
+          "title": "라벨(가운데)",
+          "image": "",
+          "body": "바늘 자국·스티커·낙서·곰팡이 확인.",
+          "required": false
+        },
+        {
+          "id": "xozwc13pct",
+          "title": "러너웃/매트릭스 각인",
+          "image": "",
+          "body": "라벨 옆 매끈한 부분의 각인 글자·숫자. (원판·발매연도 확인용)",
+          "required": false
+        },
+        {
+          "id": "rwv1jjnbz8m",
+          "title": "휨(워프) 확인",
+          "image": "",
+          "body": "눈높이에서 수평으로 들고 옆에서. 휨 여부 확인.",
+          "required": false
+        },
+        {
+          "id": "vqfavdmph7h",
+          "title": "하자 클로즈업",
+          "image": "",
+          "body": "찾은 흠집마다 전체 사진 + 바짝 당긴 사진 2장씩.",
+          "required": false
+        }
+      ],
       "summary": "",
       "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-19T02:51:50.845Z"
+      "updatedAt": "2026-08-19T04:25:10.028Z"
     },
     {
       "code": "MINT/92SHPL",
@@ -51,10 +306,88 @@
       "sleeveGrade": "",
       "sealed": false,
       "checks": [],
-      "sections": [],
+      "sections": [
+        {
+          "id": "qk403getbuk",
+          "title": "케이스 앞·뒤·옆",
+          "image": "",
+          "body": "케이스 앞·뒤·옆 전체.",
+          "required": true
+        },
+        {
+          "id": "u447ld1z1wj",
+          "title": "케이스 깨짐·경첩",
+          "image": "",
+          "body": "케이스 깨짐·경첩(힌지) 부러짐 확인.",
+          "required": false
+        },
+        {
+          "id": "3pygaoj7yvt",
+          "title": "부클릿(책자) 앞·뒤",
+          "image": "",
+          "body": "책자 앞·뒤 인쇄·변색 확인.",
+          "required": true
+        },
+        {
+          "id": "lxuq0i11ik",
+          "title": "부클릿 들뜸",
+          "image": "",
+          "body": "옆에서 각도를 줘 책자 들뜬 정도가 보이게.",
+          "required": false
+        },
+        {
+          "id": "55bw8a40pxv",
+          "title": "부클릿 속지",
+          "image": "",
+          "body": "펼쳐서 낙서·스티커·색바램 확인.",
+          "required": false
+        },
+        {
+          "id": "xdxudkrobpn",
+          "title": "트레이 카드(뒤 종이)",
+          "image": "",
+          "body": "뒤 종이(트레이 카드) 확인.",
+          "required": false
+        },
+        {
+          "id": "2rdb7zxqyrl",
+          "title": "디스크 재생면(아랫면)",
+          "image": "",
+          "body": "옆에서 빛을 비춰 스크래치·지문 확인. (최고 등급 판가름)",
+          "required": true
+        },
+        {
+          "id": "gn1lchct6pb",
+          "title": "디스크 윗면(인쇄면)",
+          "image": "",
+          "body": "윗면 인쇄 벗겨짐·변색 확인.",
+          "required": false
+        },
+        {
+          "id": "e6rx7s139ni",
+          "title": "가운데 구멍 주변(허브)",
+          "image": "",
+          "body": "구멍 주변 금(크랙) 확인. 금 가면 재생 불가 — 가장 중요.",
+          "required": true
+        },
+        {
+          "id": "9gzuwoauqh",
+          "title": "구성품 (띠지·스티커·포토카드·특전)",
+          "image": "",
+          "body": "딸려오는 구성품. 있는 것만 촬영.",
+          "required": false
+        },
+        {
+          "id": "d7ov0xp5sjs",
+          "title": "하자 클로즈업",
+          "image": "",
+          "body": "찾은 흠집마다 바짝 당긴 사진.",
+          "required": false
+        }
+      ],
       "summary": "",
       "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-19T02:51:51.091Z"
+      "updatedAt": "2026-08-19T04:25:10.440Z"
     },
     {
       "code": "MINT/2R4BTZ",
@@ -65,10 +398,95 @@
       "sleeveGrade": "",
       "sealed": false,
       "checks": [],
-      "sections": [],
+      "sections": [
+        {
+          "id": "7gx149m51me",
+          "title": "자켓 앞면",
+          "image": "",
+          "body": "자켓 앞면 전체. 인쇄·변색·오염 확인.",
+          "required": true
+        },
+        {
+          "id": "qc21d75xih",
+          "title": "자켓 뒷면",
+          "image": "",
+          "body": "자켓 뒷면 전체. 크레딧·변색·습기 흔적 확인.",
+          "required": true
+        },
+        {
+          "id": "6tasid9d0c",
+          "title": "자켓 옆면(Spine)",
+          "image": "",
+          "body": "옆면 글자 마모·바램 확인.",
+          "required": false
+        },
+        {
+          "id": "2k4slct8b0k",
+          "title": "네 모서리",
+          "image": "",
+          "body": "네 모서리 찍힘·터짐 확인. (손상 시 위치 기재)",
+          "required": false
+        },
+        {
+          "id": "x8mtpqlnkgl",
+          "title": "자켓 링웨어(음반 눌린 자국)",
+          "image": "",
+          "body": "옆에서 빛을 비스듬히 비춰 동그란 눌림(링웨어) 확인.",
+          "required": false
+        },
+        {
+          "id": "aftvav64mns",
+          "title": "구성품 (속비닐·속지·가사지·포스터·띠지)",
+          "image": "",
+          "body": "딸려오는 구성품을 하나씩. 있는 것만 촬영.",
+          "required": false
+        },
+        {
+          "id": "3fxtiijpv85",
+          "title": "판 A면 표면",
+          "image": "",
+          "body": "옆에서 빛을 낮게 비스듬히 비춰 A면 전체. 스크래치가 선으로 드러나게. (최고 등급 판가름)",
+          "required": true
+        },
+        {
+          "id": "e915ctt3bqh",
+          "title": "판 B면 표면",
+          "image": "",
+          "body": "옆에서 빛을 낮게 비스듬히 비춰 B면 전체. 동일한 방식으로.",
+          "required": true
+        },
+        {
+          "id": "vckbkz6amqj",
+          "title": "라벨(가운데)",
+          "image": "",
+          "body": "바늘 자국·스티커·낙서·곰팡이 확인.",
+          "required": false
+        },
+        {
+          "id": "c9w3idqzyk5",
+          "title": "러너웃/매트릭스 각인",
+          "image": "",
+          "body": "라벨 옆 매끈한 부분의 각인 글자·숫자. (원판·발매연도 확인용)",
+          "required": false
+        },
+        {
+          "id": "00pyrf6srrbp",
+          "title": "휨(워프) 확인",
+          "image": "",
+          "body": "눈높이에서 수평으로 들고 옆에서. 휨 여부 확인.",
+          "required": false
+        },
+        {
+          "id": "tdr3ninf4s",
+          "title": "하자 클로즈업",
+          "image": "",
+          "body": "찾은 흠집마다 전체 사진 + 바짝 당긴 사진 2장씩.",
+          "required": false
+        }
+      ],
       "summary": "",
       "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-19T02:51:51.328Z"
+      "updatedAt": "2026-08-19T04:25:10.947Z"
     },
     {
       "code": "MINT/8BZDS2",
@@ -79,10 +497,95 @@
       "sleeveGrade": "",
       "sealed": false,
       "checks": [],
-      "sections": [],
+      "sections": [
+        {
+          "id": "ckmuc3w1zmc",
+          "title": "자켓 앞면",
+          "image": "",
+          "body": "자켓 앞면 전체. 인쇄·변색·오염 확인.",
+          "required": true
+        },
+        {
+          "id": "rox6otjb6v",
+          "title": "자켓 뒷면",
+          "image": "",
+          "body": "자켓 뒷면 전체. 크레딧·변색·습기 흔적 확인.",
+          "required": true
+        },
+        {
+          "id": "2hszs3pb22h",
+          "title": "자켓 옆면(Spine)",
+          "image": "",
+          "body": "옆면 글자 마모·바램 확인.",
+          "required": false
+        },
+        {
+          "id": "rgyxtnbdah",
+          "title": "네 모서리",
+          "image": "",
+          "body": "네 모서리 찍힘·터짐 확인. (손상 시 위치 기재)",
+          "required": false
+        },
+        {
+          "id": "46vyx3a4g0w",
+          "title": "자켓 링웨어(음반 눌린 자국)",
+          "image": "",
+          "body": "옆에서 빛을 비스듬히 비춰 동그란 눌림(링웨어) 확인.",
+          "required": false
+        },
+        {
+          "id": "o7k9wfksf7",
+          "title": "구성품 (속비닐·속지·가사지·포스터·띠지)",
+          "image": "",
+          "body": "딸려오는 구성품을 하나씩. 있는 것만 촬영.",
+          "required": false
+        },
+        {
+          "id": "yoo9p6u29f",
+          "title": "판 A면 표면",
+          "image": "",
+          "body": "옆에서 빛을 낮게 비스듬히 비춰 A면 전체. 스크래치가 선으로 드러나게. (최고 등급 판가름)",
+          "required": true
+        },
+        {
+          "id": "q0x5auqtjla",
+          "title": "판 B면 표면",
+          "image": "",
+          "body": "옆에서 빛을 낮게 비스듬히 비춰 B면 전체. 동일한 방식으로.",
+          "required": true
+        },
+        {
+          "id": "j9we1qdkab",
+          "title": "라벨(가운데)",
+          "image": "",
+          "body": "바늘 자국·스티커·낙서·곰팡이 확인.",
+          "required": false
+        },
+        {
+          "id": "w3fu3s8l6m8",
+          "title": "러너웃/매트릭스 각인",
+          "image": "",
+          "body": "라벨 옆 매끈한 부분의 각인 글자·숫자. (원판·발매연도 확인용)",
+          "required": false
+        },
+        {
+          "id": "llekcfqs7hi",
+          "title": "휨(워프) 확인",
+          "image": "",
+          "body": "눈높이에서 수평으로 들고 옆에서. 휨 여부 확인.",
+          "required": false
+        },
+        {
+          "id": "uz6sfghtm6j",
+          "title": "하자 클로즈업",
+          "image": "",
+          "body": "찾은 흠집마다 전체 사진 + 바짝 당긴 사진 2장씩.",
+          "required": false
+        }
+      ],
       "summary": "",
       "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-19T02:51:51.577Z"
+      "updatedAt": "2026-08-19T04:25:11.204Z"
     },
     {
       "code": "MINT/R7DHF8",
@@ -93,10 +596,95 @@
       "sleeveGrade": "",
       "sealed": false,
       "checks": [],
-      "sections": [],
+      "sections": [
+        {
+          "id": "10a939ocvwld",
+          "title": "자켓 앞면",
+          "image": "",
+          "body": "자켓 앞면 전체. 인쇄·변색·오염 확인.",
+          "required": true
+        },
+        {
+          "id": "7ryhlutszrh",
+          "title": "자켓 뒷면",
+          "image": "",
+          "body": "자켓 뒷면 전체. 크레딧·변색·습기 흔적 확인.",
+          "required": true
+        },
+        {
+          "id": "hsdjptkxqif",
+          "title": "자켓 옆면(Spine)",
+          "image": "",
+          "body": "옆면 글자 마모·바램 확인.",
+          "required": false
+        },
+        {
+          "id": "40y452nhnzv",
+          "title": "네 모서리",
+          "image": "",
+          "body": "네 모서리 찍힘·터짐 확인. (손상 시 위치 기재)",
+          "required": false
+        },
+        {
+          "id": "bxn8v8crw8",
+          "title": "자켓 링웨어(음반 눌린 자국)",
+          "image": "",
+          "body": "옆에서 빛을 비스듬히 비춰 동그란 눌림(링웨어) 확인.",
+          "required": false
+        },
+        {
+          "id": "60vywpemi5i",
+          "title": "구성품 (속비닐·속지·가사지·포스터·띠지)",
+          "image": "",
+          "body": "딸려오는 구성품을 하나씩. 있는 것만 촬영.",
+          "required": false
+        },
+        {
+          "id": "xlss40gs94l",
+          "title": "판 A면 표면",
+          "image": "",
+          "body": "옆에서 빛을 낮게 비스듬히 비춰 A면 전체. 스크래치가 선으로 드러나게. (최고 등급 판가름)",
+          "required": true
+        },
+        {
+          "id": "64q284jlk9f",
+          "title": "판 B면 표면",
+          "image": "",
+          "body": "옆에서 빛을 낮게 비스듬히 비춰 B면 전체. 동일한 방식으로.",
+          "required": true
+        },
+        {
+          "id": "kgm4zwjcjkh",
+          "title": "라벨(가운데)",
+          "image": "",
+          "body": "바늘 자국·스티커·낙서·곰팡이 확인.",
+          "required": false
+        },
+        {
+          "id": "3aamnfkg09u",
+          "title": "러너웃/매트릭스 각인",
+          "image": "",
+          "body": "라벨 옆 매끈한 부분의 각인 글자·숫자. (원판·발매연도 확인용)",
+          "required": false
+        },
+        {
+          "id": "72atnr56abt",
+          "title": "휨(워프) 확인",
+          "image": "",
+          "body": "눈높이에서 수평으로 들고 옆에서. 휨 여부 확인.",
+          "required": false
+        },
+        {
+          "id": "qw9m2aq40id",
+          "title": "하자 클로즈업",
+          "image": "",
+          "body": "찾은 흠집마다 전체 사진 + 바짝 당긴 사진 2장씩.",
+          "required": false
+        }
+      ],
       "summary": "",
       "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-19T02:51:51.811Z"
+      "updatedAt": "2026-08-19T04:25:11.509Z"
     },
     {
       "code": "MINT/WUR8Q5",
@@ -107,10 +695,95 @@
       "sleeveGrade": "",
       "sealed": false,
       "checks": [],
-      "sections": [],
+      "sections": [
+        {
+          "id": "pthu467xv7",
+          "title": "자켓 앞면",
+          "image": "",
+          "body": "자켓 앞면 전체. 인쇄·변색·오염 확인.",
+          "required": true
+        },
+        {
+          "id": "89d3aycaqzh",
+          "title": "자켓 뒷면",
+          "image": "",
+          "body": "자켓 뒷면 전체. 크레딧·변색·습기 흔적 확인.",
+          "required": true
+        },
+        {
+          "id": "a6sahu5rxl",
+          "title": "자켓 옆면(Spine)",
+          "image": "",
+          "body": "옆면 글자 마모·바램 확인.",
+          "required": false
+        },
+        {
+          "id": "2ollh951lw4",
+          "title": "네 모서리",
+          "image": "",
+          "body": "네 모서리 찍힘·터짐 확인. (손상 시 위치 기재)",
+          "required": false
+        },
+        {
+          "id": "wywwvuh1top",
+          "title": "자켓 링웨어(음반 눌린 자국)",
+          "image": "",
+          "body": "옆에서 빛을 비스듬히 비춰 동그란 눌림(링웨어) 확인.",
+          "required": false
+        },
+        {
+          "id": "om4wraohoa9",
+          "title": "구성품 (속비닐·속지·가사지·포스터·띠지)",
+          "image": "",
+          "body": "딸려오는 구성품을 하나씩. 있는 것만 촬영.",
+          "required": false
+        },
+        {
+          "id": "7tdfdpc3j58",
+          "title": "판 A면 표면",
+          "image": "",
+          "body": "옆에서 빛을 낮게 비스듬히 비춰 A면 전체. 스크래치가 선으로 드러나게. (최고 등급 판가름)",
+          "required": true
+        },
+        {
+          "id": "xunqfhllpbh",
+          "title": "판 B면 표면",
+          "image": "",
+          "body": "옆에서 빛을 낮게 비스듬히 비춰 B면 전체. 동일한 방식으로.",
+          "required": true
+        },
+        {
+          "id": "xu43smtl2w",
+          "title": "라벨(가운데)",
+          "image": "",
+          "body": "바늘 자국·스티커·낙서·곰팡이 확인.",
+          "required": false
+        },
+        {
+          "id": "ho8bp16bwtw",
+          "title": "러너웃/매트릭스 각인",
+          "image": "",
+          "body": "라벨 옆 매끈한 부분의 각인 글자·숫자. (원판·발매연도 확인용)",
+          "required": false
+        },
+        {
+          "id": "80h70narten",
+          "title": "휨(워프) 확인",
+          "image": "",
+          "body": "눈높이에서 수평으로 들고 옆에서. 휨 여부 확인.",
+          "required": false
+        },
+        {
+          "id": "mjvfbedmwcf",
+          "title": "하자 클로즈업",
+          "image": "",
+          "body": "찾은 흠집마다 전체 사진 + 바짝 당긴 사진 2장씩.",
+          "required": false
+        }
+      ],
       "summary": "",
       "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-19T02:51:52.064Z"
+      "updatedAt": "2026-08-19T04:25:11.983Z"
     },
     {
       "code": "MINT/ZXC2F5",
@@ -121,10 +794,95 @@
       "sleeveGrade": "",
       "sealed": false,
       "checks": [],
-      "sections": [],
+      "sections": [
+        {
+          "id": "1tkwdkca0bz",
+          "title": "자켓 앞면",
+          "image": "",
+          "body": "자켓 앞면 전체. 인쇄·변색·오염 확인.",
+          "required": true
+        },
+        {
+          "id": "q5g45o2d2yr",
+          "title": "자켓 뒷면",
+          "image": "",
+          "body": "자켓 뒷면 전체. 크레딧·변색·습기 흔적 확인.",
+          "required": true
+        },
+        {
+          "id": "wy4y32ewbcn",
+          "title": "자켓 옆면(Spine)",
+          "image": "",
+          "body": "옆면 글자 마모·바램 확인.",
+          "required": false
+        },
+        {
+          "id": "w389rx3q42i",
+          "title": "네 모서리",
+          "image": "",
+          "body": "네 모서리 찍힘·터짐 확인. (손상 시 위치 기재)",
+          "required": false
+        },
+        {
+          "id": "lva8b9fyiqd",
+          "title": "자켓 링웨어(음반 눌린 자국)",
+          "image": "",
+          "body": "옆에서 빛을 비스듬히 비춰 동그란 눌림(링웨어) 확인.",
+          "required": false
+        },
+        {
+          "id": "t2wfmg1hdj",
+          "title": "구성품 (속비닐·속지·가사지·포스터·띠지)",
+          "image": "",
+          "body": "딸려오는 구성품을 하나씩. 있는 것만 촬영.",
+          "required": false
+        },
+        {
+          "id": "5flglkajxdu",
+          "title": "판 A면 표면",
+          "image": "",
+          "body": "옆에서 빛을 낮게 비스듬히 비춰 A면 전체. 스크래치가 선으로 드러나게. (최고 등급 판가름)",
+          "required": true
+        },
+        {
+          "id": "f52iui765yl",
+          "title": "판 B면 표면",
+          "image": "",
+          "body": "옆에서 빛을 낮게 비스듬히 비춰 B면 전체. 동일한 방식으로.",
+          "required": true
+        },
+        {
+          "id": "o0ypius99r",
+          "title": "라벨(가운데)",
+          "image": "",
+          "body": "바늘 자국·스티커·낙서·곰팡이 확인.",
+          "required": false
+        },
+        {
+          "id": "0rh94c2r115",
+          "title": "러너웃/매트릭스 각인",
+          "image": "",
+          "body": "라벨 옆 매끈한 부분의 각인 글자·숫자. (원판·발매연도 확인용)",
+          "required": false
+        },
+        {
+          "id": "h6jn41vcdxh",
+          "title": "휨(워프) 확인",
+          "image": "",
+          "body": "눈높이에서 수평으로 들고 옆에서. 휨 여부 확인.",
+          "required": false
+        },
+        {
+          "id": "3x3fbkjb2xp",
+          "title": "하자 클로즈업",
+          "image": "",
+          "body": "찾은 흠집마다 전체 사진 + 바짝 당긴 사진 2장씩.",
+          "required": false
+        }
+      ],
       "summary": "",
       "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-19T02:51:52.291Z"
+      "updatedAt": "2026-08-19T04:25:12.279Z"
     },
     {
       "code": "MINT/26UPBX",
@@ -135,10 +893,88 @@
       "sleeveGrade": "",
       "sealed": false,
       "checks": [],
-      "sections": [],
+      "sections": [
+        {
+          "id": "nq509yiib5",
+          "title": "케이스 앞·뒤·옆",
+          "image": "",
+          "body": "케이스 앞·뒤·옆 전체.",
+          "required": true
+        },
+        {
+          "id": "hp6ac5r7cd",
+          "title": "케이스 깨짐·경첩",
+          "image": "",
+          "body": "케이스 깨짐·경첩(힌지) 부러짐 확인.",
+          "required": false
+        },
+        {
+          "id": "5qxyoybx0zw",
+          "title": "부클릿(책자) 앞·뒤",
+          "image": "",
+          "body": "책자 앞·뒤 인쇄·변색 확인.",
+          "required": true
+        },
+        {
+          "id": "h0h8ihdhoo4",
+          "title": "부클릿 들뜸",
+          "image": "",
+          "body": "옆에서 각도를 줘 책자 들뜬 정도가 보이게.",
+          "required": false
+        },
+        {
+          "id": "c7nh2239go",
+          "title": "부클릿 속지",
+          "image": "",
+          "body": "펼쳐서 낙서·스티커·색바램 확인.",
+          "required": false
+        },
+        {
+          "id": "rb0fhb8m0wp",
+          "title": "트레이 카드(뒤 종이)",
+          "image": "",
+          "body": "뒤 종이(트레이 카드) 확인.",
+          "required": false
+        },
+        {
+          "id": "p8ol2ts4nm",
+          "title": "디스크 재생면(아랫면)",
+          "image": "",
+          "body": "옆에서 빛을 비춰 스크래치·지문 확인. (최고 등급 판가름)",
+          "required": true
+        },
+        {
+          "id": "0wos2olxh5uc",
+          "title": "디스크 윗면(인쇄면)",
+          "image": "",
+          "body": "윗면 인쇄 벗겨짐·변색 확인.",
+          "required": false
+        },
+        {
+          "id": "olmjytlsd0n",
+          "title": "가운데 구멍 주변(허브)",
+          "image": "",
+          "body": "구멍 주변 금(크랙) 확인. 금 가면 재생 불가 — 가장 중요.",
+          "required": true
+        },
+        {
+          "id": "f050369xoy",
+          "title": "구성품 (띠지·스티커·포토카드·특전)",
+          "image": "",
+          "body": "딸려오는 구성품. 있는 것만 촬영.",
+          "required": false
+        },
+        {
+          "id": "pg8fz2h6vt",
+          "title": "하자 클로즈업",
+          "image": "",
+          "body": "찾은 흠집마다 바짝 당긴 사진.",
+          "required": false
+        }
+      ],
       "summary": "",
       "disclaimer": "본 등급은 당사의 객관적 감정 기준표(v1.0)에 따라 육안(외관) 기준으로 부여되었으며, 청음 테스트는 포함하지 않습니다. 수집가의 보관 환경 훼손 또는 재검수 요청 시 당사 기준표에 따라 등급이 재평가될 수 있습니다.",
-      "updatedAt": "2026-08-19T02:51:52.533Z"
+      "updatedAt": "2026-08-19T04:25:12.512Z"
     }
   ]
 }
