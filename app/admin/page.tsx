@@ -135,6 +135,15 @@ function isAutoBody(body: string): boolean {
   return t === "" || AUTO_BODY_SET.has(t) || isGradeDraftBody(t);
 }
 
+// 상세 체크리스트에서 아직 없는 섹션을 현재 음반에 추가(기존 섹션·사진은 그대로 둠)
+function fillChecklist(d: Record): ReportSection[] {
+  const have = new Set(d.sections.map((s) => s.title.trim()));
+  const missing = sectionTemplate(d.format)
+    .filter((t) => !have.has(t.title.trim()))
+    .map((t) => ({ id: uid(), title: t.title, image: "", body: t.body, required: t.req }));
+  return [...d.sections, ...missing];
+}
+
 // 등급에 맞춰 섹션 초안 다시 채우기.
 // force=false: 손대지 않은(초안) 섹션만 교체 / force=true: 등급 대상 섹션 전부 교체
 function applyGradeDrafts(d: Record, force = false): ReportSection[] {
@@ -646,6 +655,14 @@ export default function AdminPage() {
                         title="흠집이 드러나게 찍는 방법과 촬영 체크리스트"
                       >
                         📷 사진 촬영 가이드
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setDraft({ ...draft, sections: fillChecklist(draft) })}
+                        className="text-sm border border-neutral-600 rounded-lg px-3 py-1 hover:bg-neutral-800"
+                        title="이 음반에 상세 체크리스트에서 빠진 섹션을 추가합니다(기존 사진은 유지)"
+                      >
+                        상세 체크리스트 채우기
                       </button>
                       <button
                         type="button"
