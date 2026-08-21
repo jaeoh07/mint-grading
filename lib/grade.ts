@@ -103,20 +103,29 @@ export function gradeSummary(grade: string): string {
   return g ? GRADE_SUMMARY[g.code] ?? "" : "";
 }
 
+// 포맷별 등급 라벨. CD는 골드마인 기준상 '케이스'가 아닌 부클릿·속지(Booklet/Insert)로 자켓 등급을 매긴다.
+export function gradeLabels(format: string): { media: string; sleeve: string } {
+  const isCD = /cd/i.test(format || "");
+  return isCD
+    ? { media: "디스크(Media)", sleeve: "부클릿·속지(Booklet/Insert)" }
+    : { media: "알판(Media)", sleeve: "자켓(Sleeve)" };
+}
+
 // 알판(Media)·자켓(Sleeve) 등급을 모두 반영한 총평 초안
-export function combinedSummary(mediaGrade: string, sleeveGrade: string, sealed: boolean): string {
+export function combinedSummary(mediaGrade: string, sleeveGrade: string, sealed: boolean, format = ""): string {
   if (sealed) return SEALED_SUMMARY;
   const m = matchGrade(mediaGrade);
   const s = matchGrade(sleeveGrade);
+  const { media, sleeve } = gradeLabels(format);
   const base = "본 음반은 골드마인(Goldmine) 표준 등급 기준에 의거하여, ";
   if (m && s) {
     if (m.code === s.code) {
-      return `${base}알판(Media)·자켓(Sleeve) 모두 [${m.name}]으로 판정되었습니다.`;
+      return `${base}${media}·${sleeve} 모두 [${m.name}]으로 판정되었습니다.`;
     }
-    return `${base}알판(Media)은 [${m.name}], 자켓(Sleeve)은 [${s.name}]으로 판정되었습니다.`;
+    return `${base}${media}은 [${m.name}], ${sleeve}은 [${s.name}]으로 판정되었습니다.`;
   }
-  if (m) return `${base}알판(Media) [${m.name}]으로 판정되었습니다.`;
-  if (s) return `${base}자켓(Sleeve) [${s.name}]으로 판정되었습니다.`;
+  if (m) return `${base}${media} [${m.name}]으로 판정되었습니다.`;
+  if (s) return `${base}${sleeve} [${s.name}]으로 판정되었습니다.`;
   return "";
 }
 

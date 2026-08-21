@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { use, useEffect, useState } from "react";
 import type { Record } from "@/lib/store";
-import { GRADES, PAGE_BACKGROUND, SEALED_COLOR, SEALED_LABEL, gradeColor, matchGrade } from "@/lib/grade";
+import { GRADES, PAGE_BACKGROUND, SEALED_COLOR, SEALED_LABEL, gradeColor, gradeLabels, matchGrade } from "@/lib/grade";
 
 export default function ResultPage({
   searchParams,
@@ -128,20 +128,25 @@ export default function ResultPage({
               <p className="mt-2 text-sm font-normal text-white/50">밀봉 상태로 내부 알판은 미검수입니다.</p>
             </div>
           ) : (
+            <>
             <div className="flex justify-center gap-10">
               <div>
-                <span className="text-white/50 text-sm">알판 (Media)</span>
+                <span className="text-white/50 text-sm">{gradeLabels(record.format).media}</span>
                 <div className="mt-1 text-2xl sm:text-3xl font-black" style={{ color: mediaColor }}>
                   {record.mediaGrade || "—"}
                 </div>
               </div>
               <div>
-                <span className="text-white/50 text-sm">자켓 (Sleeve)</span>
+                <span className="text-white/50 text-sm">{gradeLabels(record.format).sleeve}</span>
                 <div className="mt-1 text-2xl sm:text-3xl font-black" style={{ color: sleeveColor }}>
                   {record.sleeveGrade || "—"}
                 </div>
               </div>
             </div>
+            {/cd/i.test(record.format) && (
+              <p className="mt-3 text-xs text-white/40">골드마인 기준상 CD 케이스는 등급 대상이 아니며, 자켓 등급은 부클릿·속지 기준입니다.</p>
+            )}
+            </>
           )}
         </div>
 
@@ -208,6 +213,9 @@ export default function ResultPage({
         <div className="px-8 py-6 border-t border-white/10 bg-black/10">
           <h2 className="font-bold">📋 총평 (Grader&apos;s Summary)</h2>
           <p className="mt-3 text-white/80 leading-relaxed whitespace-pre-wrap">{record.summary}</p>
+          <p className="mt-3 rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-xs text-white/50 leading-relaxed">
+            ※ 본 등급은 육안(외관) 기준 감정입니다. 조명·각도에 따라 미세한 흠집은 육안으로 보이지 않을 수 있으며, 루페(확대경)를 이용한 정밀 검수는 별도(유료)로 제공됩니다.
+          </p>
           {(record.gradedDate || record.graderName) && (
             <p className="mt-4 text-sm text-white/50">
               {record.gradedDate && <>감정일자 {record.gradedDate}</>}
