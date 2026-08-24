@@ -78,7 +78,8 @@ export default function ResultPage({
       <div className="mx-auto max-w-2xl rounded-2xl overflow-hidden border border-white/15 bg-white/[0.04] backdrop-blur-sm shadow-2xl">
         {/* 헤더 */}
         <div className="px-8 pt-8 pb-6 text-center border-b border-white/10">
-          <p className="text-sm tracking-[0.3em] text-white/60">MINT 감정 리포트</p>
+          <p className="text-xs tracking-[0.35em] text-white/50">MINT · 감정 리포트</p>
+          <p className="mt-2 font-mono text-sm text-emerald-400 tracking-wider">{record.code}</p>
           <h1 className="mt-3 text-2xl sm:text-3xl font-bold flex items-center justify-center flex-wrap gap-2">
             <span>{record.albumTitle}</span>
             {record.format && (
@@ -179,19 +180,23 @@ export default function ResultPage({
               🔒 밀봉(Sealed) 상태로, 알판(디스크) 내부는 개봉하지 않아 검수하지 않았습니다. 외관(자켓·밀봉) 기준으로만 감정되었습니다.
             </div>
           )}
-          <div className="mt-6 space-y-8">
-            {visibleSections.map((s) => (
-              <div key={s.id}>
-                <h3 className="font-bold">{s.title}</h3>
-                {(() => {
-                  const imgs = s.images && s.images.length ? s.images : s.image ? [s.image] : [];
-                  if (!imgs.length) return null;
-                  return (
-                    <div className={`mt-3 grid gap-2 ${imgs.length > 1 ? "grid-cols-2" : "grid-cols-1"}`}>
-                      {imgs.map((url, i) => (
+          <div className="mt-5 space-y-3">
+            {visibleSections.map((s, i) => {
+              const imgs = s.images && s.images.length ? s.images : s.image ? [s.image] : [];
+              return (
+                <div key={s.id} className="rounded-xl border border-white/10 bg-white/[0.02]">
+                  <div className="flex items-center gap-2.5 px-4 pt-3">
+                    <span className="font-mono text-[11px] text-white/35 tabular-nums">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="font-semibold text-sm tracking-wide text-white/90">{s.title}</h3>
+                  </div>
+                  {imgs.length > 0 && (
+                    <div className={`grid gap-1.5 px-3 pt-2.5 ${imgs.length > 1 ? "grid-cols-2" : "grid-cols-1"}`}>
+                      {imgs.map((url, k) => (
                         // eslint-disable-next-line @next/next/no-img-element
                         <img
-                          key={i}
+                          key={k}
                           src={url}
                           alt={s.title}
                           onClick={() => setZoom(url)}
@@ -199,23 +204,24 @@ export default function ResultPage({
                         />
                       ))}
                     </div>
-                  );
-                })()}
-                {s.body && s.body.trim() && (
-                  <p className="mt-3 text-white/80 leading-relaxed whitespace-pre-wrap">{s.body}</p>
-                )}
-              </div>
-            ))}
+                  )}
+                  {s.body && s.body.trim() && (
+                    <p className="px-4 pt-2 pb-3 text-sm text-white/60 leading-relaxed whitespace-pre-wrap">{s.body}</p>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
 
         {/* 총평 */}
         <div className="px-8 py-6 border-t border-white/10 bg-black/10">
           <h2 className="font-bold">📋 총평 (Grader&apos;s Summary)</h2>
-          <p className="mt-3 text-white/80 leading-relaxed whitespace-pre-wrap">{record.summary}</p>
-          <p className="mt-3 rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-xs text-white/50 leading-relaxed">
-            ※ 본 등급은 육안(외관) 기준 감정입니다. 조명·각도에 따라 미세한 흠집은 육안으로 보이지 않을 수 있으며, 루페(확대경)를 이용한 정밀 검수는 별도(유료)로 제공됩니다.
-          </p>
+          {record.summary && record.summary.trim() ? (
+            <p className="mt-3 text-white/80 leading-relaxed whitespace-pre-wrap">{record.summary}</p>
+          ) : (
+            <p className="mt-3 text-sm text-white/40">아직 총평이 등록되지 않았습니다.</p>
+          )}
           {(record.gradedDate || record.graderName) && (
             <p className="mt-4 text-sm text-white/50">
               {record.gradedDate && <>감정일자 {record.gradedDate}</>}
@@ -229,6 +235,9 @@ export default function ResultPage({
         <div className="px-8 py-6 border-t border-white/10">
           <h2 className="font-bold text-sm text-white/50">[ 면책 및 재검수 조항 ]</h2>
           <p className="mt-3 text-white/50 text-sm leading-relaxed whitespace-pre-wrap">{record.disclaimer}</p>
+          <p className="mt-2 text-white/40 text-sm leading-relaxed">
+            ※ 육안(외관) 기준 감정으로, 조명·각도에 따라 미세한 흠집은 보이지 않을 수 있습니다. 루페(확대경)를 이용한 정밀 검수는 별도(유료)로 제공됩니다.
+          </p>
           <button
             className="mt-6 w-full border border-white/20 rounded-xl py-3 font-bold text-white/50 cursor-not-allowed"
             onClick={() => alert("재검수 신청은 현재 준비 중입니다.")}
