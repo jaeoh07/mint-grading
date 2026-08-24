@@ -30,36 +30,36 @@ function generateCode(existing: Record[]): string {
 type SectionTmpl = { title: string; body: string; req: boolean };
 
 const DEFAULT_SECTIONS_LP: SectionTmpl[] = [
-  { title: "가장 큰 흠집 먼저", body: "이 음반에서 제일 큰 하자가 어디인지 먼저 찾아 촬영. 없으면 '특이 하자 없음'으로 기재.", req: true },
-  { title: "자켓 앞면", body: "자켓 앞면 전체. 인쇄·변색·오염 확인.", req: true },
-  { title: "자켓 뒷면", body: "자켓 뒷면 전체. 크레딧·변색·습기 흔적 확인.", req: true },
-  { title: "자켓 옆면(Spine)", body: "옆면 글자 마모·바램 확인.", req: false },
-  { title: "네 모서리", body: "네 모서리 찍힘·터짐 확인. (손상 시 위치 기재)", req: false },
-  { title: "자켓 링웨어(음반 눌린 자국)", body: "옆에서 빛을 비스듬히 비춰 동그란 눌림(링웨어) 확인.", req: false },
-  { title: "구성품 (속비닐·속지·가사지·포스터·띠지)", body: "딸려오는 구성품을 하나씩. 있는 것만 촬영.", req: false },
-  { title: "판 A면 표면", body: "옆에서 빛을 낮게 비스듬히 비춰 A면 전체. 스크래치가 선으로 드러나게. (최고 등급 판가름)", req: true },
-  { title: "판 B면 표면", body: "옆에서 빛을 낮게 비스듬히 비춰 B면 전체. 동일한 방식으로.", req: true },
-  { title: "라벨(가운데)", body: "바늘 자국·스티커·낙서·곰팡이 확인.", req: false },
-  { title: "스핀들 자국(중앙 홀 주변)", body: "중앙 홀 주변의 스핀들 긁힘·자국 확인. (NM 여부를 가르는 포인트)", req: false },
-  { title: "데드왁스(러너웃) 각인", body: "라벨 옆 매끈한 부분(데드왁스)의 각인 글자·숫자. 정품·판본·발매연도 확인용.", req: false },
-  { title: "휨(워프) 확인", body: "눈높이에서 수평으로 들고 옆에서. 휨 여부 확인.", req: false },
-  { title: "하자 클로즈업", body: "찾은 흠집마다 전체 사진 + 바짝 당긴 사진 2장씩.", req: false },
+  { title: "가장 큰 흠집 먼저", body: "제일 큰 하자부터. 없으면 특이사항 없음.", req: true },
+  { title: "자켓 앞면", body: "인쇄·변색·오염", req: true },
+  { title: "자켓 뒷면", body: "변색·습기·크레딧", req: true },
+  { title: "자켓 옆면(Spine)", body: "글자 마모", req: false },
+  { title: "네 모서리", body: "찍힘·터짐", req: false },
+  { title: "자켓 링웨어(음반 눌린 자국)", body: "옆광 · 눌린 자국", req: false },
+  { title: "구성품 (속비닐·속지·가사지·포스터·띠지)", body: "있는 것만", req: false },
+  { title: "판 A면 표면", body: "옆광 · 스크래치 (등급 결정)", req: true },
+  { title: "판 B면 표면", body: "옆광 · 스크래치", req: true },
+  { title: "라벨(가운데)", body: "스티커·낙서·곰팡이", req: false },
+  { title: "스핀들 자국(중앙 홀 주변)", body: "중앙 홀 주변 긁힘", req: false },
+  { title: "데드왁스(러너웃) 각인", body: "각인 코드 · 정품 확인", req: false },
+  { title: "휨(워프) 확인", body: "수평 · 휨 여부", req: false },
+  { title: "하자 클로즈업", body: "흠집 근접 2장", req: false },
 ];
 
 const DEFAULT_SECTIONS_CD: SectionTmpl[] = [
-  { title: "가장 큰 흠집 먼저", body: "이 음반에서 제일 큰 하자가 어디인지 먼저 찾아 촬영. 없으면 '특이 하자 없음'으로 기재.", req: true },
-  { title: "케이스 앞·뒤·옆", body: "케이스 앞·뒤·옆 전체. (참고용 — 등급엔 미반영)", req: false },
-  { title: "케이스 깨짐·경첩", body: "케이스 깨짐·경첩(힌지) 부러짐 확인. (참고용 — 등급엔 미반영)", req: false },
-  { title: "부클릿(책자) 앞·뒤", body: "책자 앞·뒤 인쇄·변색 확인. (자켓 등급 기준)", req: true },
-  { title: "부클릿 들뜸", body: "옆에서 각도를 줘 책자 들뜬 정도가 보이게.", req: false },
-  { title: "부클릿 속지", body: "펼쳐서 낙서·스티커·색바램 확인.", req: false },
-  { title: "트레이 카드(뒤 종이)", body: "뒤 종이(트레이 카드) 확인.", req: false },
-  { title: "디스크 재생면(아랫면)", body: "옆에서 빛을 비춰 스크래치·지문 확인. (최고 등급 판가름)", req: true },
-  { title: "디스크 윗면(인쇄면)", body: "윗면 인쇄 벗겨짐·변색 확인.", req: false },
-  { title: "가운데 구멍 주변(허브)", body: "구멍 주변 금(크랙) 확인. 금 가면 재생 불가 — 가장 중요.", req: true },
-  { title: "매트릭스/IFPI 각인", body: "안쪽 투명 링의 각인 코드. 정품·판본 확인용.", req: false },
-  { title: "구성품 (띠지·스티커·포토카드·특전)", body: "딸려오는 구성품. 있는 것만 촬영.", req: false },
-  { title: "하자 클로즈업", body: "찾은 흠집마다 바짝 당긴 사진.", req: false },
+  { title: "가장 큰 흠집 먼저", body: "제일 큰 하자부터. 없으면 특이사항 없음.", req: true },
+  { title: "케이스 앞·뒤·옆", body: "참고용 · 등급 미반영", req: false },
+  { title: "케이스 깨짐·경첩", body: "참고용 · 등급 미반영", req: false },
+  { title: "부클릿(책자) 앞·뒤", body: "인쇄·변색 (자켓 등급)", req: true },
+  { title: "부클릿 들뜸", body: "옆각 · 들뜸 정도", req: false },
+  { title: "부클릿 속지", body: "낙서·스티커·색바램", req: false },
+  { title: "트레이 카드(뒤 종이)", body: "뒤 종이", req: false },
+  { title: "디스크 재생면(아랫면)", body: "옆광 · 스크래치·지문 (등급 결정)", req: true },
+  { title: "디스크 윗면(인쇄면)", body: "인쇄 벗겨짐·변색", req: false },
+  { title: "가운데 구멍 주변(허브)", body: "금(크랙) · 가장 중요", req: true },
+  { title: "매트릭스/IFPI 각인", body: "각인 코드 · 정품 확인", req: false },
+  { title: "구성품 (띠지·스티커·포토카드·특전)", body: "있는 것만", req: false },
+  { title: "하자 클로즈업", body: "흠집 근접", req: false },
 ];
 
 // 포맷에 맞는 기본 섹션 템플릿 (CD면 CD용, 그 외는 LP/바이닐용)
@@ -842,7 +842,7 @@ export default function AdminPage() {
               </div>
 
               <p className="text-xs text-neutral-500">
-                아래 섹션 목록(LP 12항목 / CD 11항목)의 각 부위를 위 방법으로 촬영해 사진과 설명을 올리세요. 흠집은 전체 사진 + 바짝 당긴 사진 두 장으로.
+                아래 섹션 목록(LP 14항목 / CD 13항목)의 각 부위를 위 방법으로 촬영해 사진과 설명을 올리세요. 흠집은 전체 사진 + 바짝 당긴 사진 두 장으로.
               </p>
             </div>
           </div>
