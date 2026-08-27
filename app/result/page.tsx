@@ -180,7 +180,7 @@ export default function ResultPage({
             <p className="mt-2 text-[13px] sm:text-sm text-white/50">{meta.join(" · ")}</p>
           )}
           <p className="mt-3 text-[11px] sm:text-xs text-white/40 leading-relaxed">
-            본 감정은 골드마인(Goldmine) 표준을 참고한 육안(외관) 기준이며, 청음은 포함하지 않습니다.
+            본 감정은 골드마인 표준을 참고한 육안 기준이며, 청음은 포함하지 않습니다.
           </p>
         </div>
 
@@ -265,7 +265,7 @@ export default function ResultPage({
           <h2 className="px-1 text-lg font-bold tracking-wide">상세 감정 리포트</h2>
           {isSealed && (
             <div className="mt-4 rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white/70">
-              🔒 밀봉(Sealed) 상태로, 알판(디스크) 내부는 개봉하지 않아 검수하지 않았습니다. 외관(자켓·밀봉) 기준으로만 감정되었습니다.
+              🔒 밀봉 상태로, 알판 내부는 개봉하지 않아 검수하지 않았습니다. 외관(자켓·밀봉) 기준으로만 감정되었습니다.
             </div>
           )}
           <div className="mt-4 space-y-3.5">
@@ -297,7 +297,7 @@ export default function ResultPage({
             {/* 자켓 · 외관 그룹 */}
             <GroupCard
               icon={/cd/i.test(record.format) ? "📀" : "📦"}
-              title={/cd/i.test(record.format) ? "케이스 · 부클릿 · 속지" : "자켓 · 외관 (Sleeve)"}
+              title={/cd/i.test(record.format) ? "케이스 · 부클릿 · 속지" : "자켓 · 외관"}
               grade={!isSealed ? record.sleeveGrade : undefined}
               color={sleeveColor}
               items={groups.sleeve}
@@ -306,7 +306,7 @@ export default function ResultPage({
             {/* 알판 · 디스크 그룹 (밀봉이면 숨김) */}
             <GroupCard
               icon="💿"
-              title={/cd/i.test(record.format) ? "디스크 (Media)" : "알판 · 디스크 (Media)"}
+              title={/cd/i.test(record.format) ? "디스크" : "알판 · 디스크"}
               grade={!isSealed ? record.mediaGrade : undefined}
               color={mediaColor}
               items={groups.media}
@@ -319,7 +319,7 @@ export default function ResultPage({
 
         {/* 총평 */}
         <div className="px-5 sm:px-8 py-6 border-t border-white/10 bg-black/10">
-          <h2 className="font-bold">📋 총평 (Grader&apos;s Summary)</h2>
+          <h2 className="font-bold">📋 총평</h2>
           {record.summary && record.summary.trim() ? (
             <p className="mt-3 text-[14px] sm:text-base text-white/80 leading-relaxed whitespace-pre-wrap">{record.summary}</p>
           ) : (
@@ -364,7 +364,7 @@ export default function ResultPage({
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between sticky top-0 bg-neutral-950 pb-3">
-              <h2 className="text-lg font-bold">골드마인(Goldmine) 등급표</h2>
+              <h2 className="text-lg font-bold">골드마인 등급표</h2>
               <button onClick={() => setShowGuide(false)} className="text-neutral-400 hover:text-white text-2xl leading-none">×</button>
             </div>
             <ul className="space-y-2">
@@ -384,8 +384,8 @@ export default function ResultPage({
                       {isCurrent && <span className="ml-auto text-xs text-white/60">이 음반 · {tags.join("/")}</span>}
                     </div>
                     <div className="mt-2 space-y-1.5 text-sm text-neutral-400 leading-relaxed">
-                      <p><span className="text-neutral-500 font-semibold">알판(Media)</span> · {g.mediaDesc}</p>
-                      <p><span className="text-neutral-500 font-semibold">자켓(Sleeve)</span> · {g.sleeveDesc}</p>
+                      <p><span className="text-neutral-500 font-semibold">알판</span> · {g.mediaDesc}</p>
+                      <p><span className="text-neutral-500 font-semibold">자켓</span> · {g.sleeveDesc}</p>
                     </div>
                   </li>
                 );

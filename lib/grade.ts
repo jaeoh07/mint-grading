@@ -81,10 +81,10 @@ export function gradeColor(grade: string): string {
 }
 
 // 밀봉(Sealed) 안내
-export const SEALED_LABEL = "Still Sealed (미개봉)";
+export const SEALED_LABEL = "미개봉 (밀봉)";
 export const SEALED_COLOR = "#e5e7eb";
 export const SEALED_SUMMARY =
-  "본 음반은 공장 밀봉(Still Sealed) 상태로, 개봉 이력 없이 외관·씰 기준으로 확인되었습니다. 밀봉 특성상 내부 알판은 미검수입니다.";
+  "본 음반은 공장 밀봉 상태로, 개봉 이력 없이 외관·씰 기준으로 확인되었습니다. 밀봉 특성상 내부 알판은 미검수입니다.";
 
 // 등급별 총평 초안 (관리자에서 알판 등급 선택 시 자동으로 채워짐 — 수정 가능)
 const GRADE_SUMMARY: { [code: string]: string } = {
@@ -107,8 +107,8 @@ export function gradeSummary(grade: string): string {
 export function gradeLabels(format: string): { media: string; sleeve: string } {
   const isCD = /cd/i.test(format || "");
   return isCD
-    ? { media: "디스크(Media)", sleeve: "부클릿·속지(Booklet/Insert)" }
-    : { media: "알판(Media)", sleeve: "자켓(Sleeve)" };
+    ? { media: "디스크", sleeve: "부클릿·속지" }
+    : { media: "알판", sleeve: "자켓" };
 }
 
 // 알판(Media)·자켓(Sleeve) 등급을 모두 반영한 총평 초안
@@ -117,7 +117,7 @@ export function combinedSummary(mediaGrade: string, sleeveGrade: string, sealed:
   const m = matchGrade(mediaGrade);
   const s = matchGrade(sleeveGrade);
   const { media, sleeve } = gradeLabels(format);
-  const base = "본 음반은 골드마인(Goldmine) 표준 등급 기준에 의거하여, ";
+  const base = "본 음반은 골드마인 표준 등급 기준에 의거하여, ";
   if (m && s) {
     if (m.code === s.code) {
       return `${base}${media}·${sleeve} 모두 [${m.name}]으로 판정되었습니다.`;
